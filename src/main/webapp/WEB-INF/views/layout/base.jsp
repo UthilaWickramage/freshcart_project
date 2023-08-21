@@ -95,7 +95,7 @@
         <div class="">
             <!-- alert -->
             <div class="alert alert-danger p-2" role="alert">
-                You’ve got FREE delivery. Start <a href="#!" class="alert-link">checkout now!</a>
+                You have got FREE delivery. Start <a href="#!" class="alert-link">checkout now!</a>
             </div>
             <ul class="list-group list-group-flush">
                 <!-- list group -->

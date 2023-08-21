@@ -2,33 +2,46 @@
 <layout:extends name="base">
     <layout:put block="content">
         <main>
+
             <section class="mt-8">
                 <div class="container">
                     <div class="hero-slider ">
                         <div
-                                style="background: url(${BASE_URL}assets/images/slider/slide-1.jpg)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
-                            <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
-                                <span class="badge text-bg-warning">Opening Sale Discount 50%</span>
+                                style="background: url(${BASE_URL}assets/images/slider/hero-img-slider-1.jpg)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
+                            <div class="ps-lg-12 py-lg-16 col-xxl-5 col-lg-7 col-md-8 py-14 px-8 text-xs-center">
 
-                                <h2 class="text-dark display-5 fw-bold mt-4">SuperMarket For Fresh Grocery </h2>
-                                <p class="lead">Introduced a new model for online grocery shopping
-                                    and convenient home delivery.</p>
+
+                                <h1 class="text-white display-5 fw-bold mt-4">SuperMarket For Fresh Grocery </h1>
+                                <p class="lead text-white">Introduced a new model for online grocery shopping
+                                    and convenient home delivery at any time.</p>
                                 <a href="#!" class="btn btn-dark mt-3">Shop Now <i class="feather-icon icon-arrow-right ms-1"></i></a>
                             </div>
 
                         </div>
                         <div class=" "
-                             style="background: url(${BASE_URL}assets/images/slider/slider-2.jpg)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
-                            <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
-                                <span class="badge text-bg-warning">Free Shipping - orders over $100</span>
-                                <h2 class="text-dark display-5 fw-bold mt-4">Free Shipping on <br> orders over <span
-                                        class="text-primary">$100</span></h2>
-                                <p class="lead">Free Shipping to First-Time Customers Only, After promotions and discounts are applied.
+                             style="background: url(${BASE_URL}assets/images/slider/hero-img-slider-2.jpg)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
+                            <div class="ps-lg-12 py-lg-16 col-xxl-5 col-lg-7  col-md-8 py-14 px-8 text-xs-center">
+
+                                <h1 class="text-dark display-5 fw-bold mt-4">Opening Sale<br>
+                                    Discount up to <span class="text-primary display-6">50%</span></h1>
+                                <p class="lead ">Snack on late-night munchies of delicious nuts & you’re guaranteed happiness before you doze!
                                 </p>
                                 <a href="#!" class="btn btn-dark mt-3">Shop Now <i class="feather-icon icon-arrow-right ms-1"></i></a>
                             </div>
 
                         </div>
+                        <div class=" "
+                             style="background: url(${BASE_URL}assets/images/slider/hero-img-slider-3.jpg)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
+                            <div class="ps-lg-12 py-lg-16 col-xxl-5 col-lg-7  col-md-8 py-14 px-8 text-xs-center">
+
+                                <h1 class="text-dark display-5 fw-bold mt-4">Midnight Munch Combo </h1>
+                                <p class="lead ">Snack on late-night munchies of delicious nuts & you are guaranteed happiness before you doze!
+                                </p>
+                                <a href="#!" class="btn btn-dark mt-3">Shop Now <i class="feather-icon icon-arrow-right ms-1"></i></a>
+                            </div>
+
+                        </div>
+
 
                     </div>
                 </div>
