@@ -53,5 +53,8 @@
 <script src="${BASE_URL}assets/js/theme.min.js"></script>
 <script src="${BASE_URL}assets/js/vendors/password.js"></script>
 
+<layout:block name="script">
+
+</layout:block>
 </body>
 </html>

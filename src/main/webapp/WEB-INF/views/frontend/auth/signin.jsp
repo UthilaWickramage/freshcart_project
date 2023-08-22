@@ -10,7 +10,7 @@
                         <img src="${BASE_URL}assets/images/logo/freshcart-logo.svg" alt="" class="d-inline-block align-text-top">
                     </a>
                     <span class="navbar-text">
-        Already have an account? <a href="signin.html">Sign in</a>
+        No Account yet? <a href="${BASE_URL}register">Register</a>
       </span>
                 </div>
             </nav>
@@ -57,7 +57,7 @@
                                             Remember me
                                         </label>
                                         </div>
-                                        <div> Forgot password? <a href="forgot-password.html">Reset It</a></div>
+                                        <div> Forgot password? <a href="${BASE_URL}forgotPassword">Reset It</a></div>
                                     </div>
                                     <!-- btn -->
                                     <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary">Sign In</button>
