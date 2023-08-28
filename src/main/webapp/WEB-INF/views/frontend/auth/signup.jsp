@@ -5,7 +5,7 @@
         <div class="border-bottom shadow-sm">
             <nav class="navbar navbar-light py-2">
                 <div class="container justify-content-center justify-content-lg-between">
-                    <a class="navbar-brand" href="../index.html">
+                    <a class="navbar-brand" href="${BASE_URL}">
                         <img src="${BASE_URL}assets/images/logo/freshcart-logo.svg" alt=""
                              class="d-inline-block align-text-top">
                     </a>

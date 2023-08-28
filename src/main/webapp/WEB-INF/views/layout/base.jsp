@@ -74,7 +74,7 @@
             </div>
             <div class="modal-footer border-0 justify-content-center">
 
-                Already have an account? <a href="#">Sign in</a>
+                Already have an account? <a href="${BASE_URL}signin">Sign in</a>
             </div>
         </div>
     </div>
