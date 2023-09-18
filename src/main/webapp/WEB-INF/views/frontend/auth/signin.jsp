@@ -39,12 +39,12 @@
 
                                     <div class="col-12">
                                         <!-- input -->
-                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="email" placeholder="Email" required>
                                     </div>
                                     <div class="col-12">
                                         <!-- input -->
                                         <div class="password-field position-relative">
-                                            <input type="password" id="fakePassword" placeholder="Enter Password" class="form-control" required >
+                                            <input type="password" id="password" placeholder="Enter Password" class="form-control" required >
                                             <span><i id="passwordToggler"class="bi bi-eye-slash"></i></span>
                                         </div>
 
@@ -60,10 +60,10 @@
                                         <div> Forgot password? <a href="${BASE_URL}forgotPassword">Reset It</a></div>
                                     </div>
                                     <!-- btn -->
-                                    <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary">Sign In</button>
+                                    <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary signin">Sign In</button>
                                     </div>
                                     <!-- link -->
-                                    <div>Do not have an account? <a href="signup.html"> Sign Up</a></div>
+                                    <div>Do not have an account? <a href="${BASE_URL}register"> Sign Up</a></div>
                                 </div>
                             </form>
                         </div>
@@ -74,5 +74,24 @@
         </main>
 
 
+    </layout:put>
+    <layout:put block="script">
+        <script type="text/javascript">
+            document.getElementsByClassName('signin').item(0).addEventListener('click', () => {
+                let email = document.getElementById('email').value;
+                let password = document.getElementById('password').value;
+                fetch('${BASE_URL}signin', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }).then(response => response.text())
+                    .then(text => console.log(text));
+            });
+        </script>
     </layout:put>
 </layout:extends>

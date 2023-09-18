@@ -8,7 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Codescandy" name="author">
-    <title>Homepage v1 - eCommerce HTML Template - FreshCart </title>
+    <title>FreshCart </title>
+
+    <link href="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
 
     <link href="${BASE_URL}assets/libs/slick-carousel/slick/slick.css" rel="stylesheet" />
     <link href="${BASE_URL}assets/libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
@@ -433,6 +435,8 @@
 <jsp:include page="../frontend/include/footer.jsp"/>
 
 <!-- Javascript-->
+<script src="${BASE_URL}assets/libs/rater-js/index.js"></script>
+<script src="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 
 <!-- Libs JS -->
 <script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
