@@ -2,6 +2,9 @@ package lk.freshcart.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
@@ -24,6 +27,52 @@ public class User extends BaseEntity{
     @Enumerated(value = EnumType.STRING)
     @Column(name = "user_type")
     private UserType userType = UserType.CUSTOMER;
+
+    public Set<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Reviews> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Set<Cards> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Cards> cards) {
+        this.cards = cards;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    private Set<Reviews> reviews = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    private Set<Cards> cards = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    private Set<CartItem> cartItems = new HashSet<>();
+
+    public Set<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(Set<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    private Set<Order> orders = new HashSet<>();
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+
 
     public Long getId() {
         return id;

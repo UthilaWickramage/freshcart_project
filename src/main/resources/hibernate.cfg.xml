@@ -10,6 +10,15 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <mapping class="lk.freshcart.entity.User"/>
+        <mapping class="lk.freshcart.entity.Product"/>
+        <mapping class="lk.freshcart.entity.Category"/>
+        <mapping class="lk.freshcart.entity.Cards"/>
+        <mapping class="lk.freshcart.entity.ProductImage"/>
+        <mapping class="lk.freshcart.entity.Reviews"/>
+        <mapping class="lk.freshcart.entity.Order"/>
+        <mapping class="lk.freshcart.entity.OrderItem"/>
+        <mapping class="lk.freshcart.entity.CartItem"/>
+        <mapping class="lk.freshcart.entity.WishListItem"/>
 
     </session-factory>
 </hibernate-configuration>

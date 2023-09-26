@@ -10,8 +10,8 @@
                         <img src="${BASE_URL}assets/images/logo/freshcart-logo.svg" alt="" class="d-inline-block align-text-top">
                     </a>
                     <span class="navbar-text">
-        No Account yet? <a href="${BASE_URL}register">Register</a>
-      </span>
+                        No Account yet? <a href="${BASE_URL}register">Register</a>
+                    </span>
                 </div>
             </nav>
         </div>
@@ -90,7 +90,7 @@
                         password: password
                     })
                 }).then(response => response.text())
-                    .then(text => console.log(text));
+                    .then(text => alert(text));
             });
         </script>
     </layout:put>

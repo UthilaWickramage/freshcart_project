@@ -115,7 +115,7 @@
                         password: password
                     })
                 }).then(response => response.text())
-                    .then(text => console.log(text));
+                    .then(text => alert(text));
             });
         </script>
     </layout:put>

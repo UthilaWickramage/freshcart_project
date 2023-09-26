@@ -10,7 +10,9 @@ public class HibernateUtil {
         try{
             return new Configuration().configure().buildSessionFactory();
         }catch(Exception e){
-            throw new ExceptionInInitializerError();
+            e.printStackTrace();
+           throw new ExceptionInInitializerError();
+
         }
     }
 
