@@ -8,6 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lk.freshcart.dto.RegisterDTO;
 import lk.freshcart.entity.User;
+import lk.freshcart.entity.UserType;
 import lk.freshcart.services.UserService;
 import lk.freshcart.util.EncryptionUtil;
 import org.glassfish.jersey.server.mvc.Viewable;
@@ -38,6 +39,9 @@ public class RegisterController {
             user.setPassword(EncryptionUtil.encrypt(registerDTO.getPassword()));
             String verification_code  = UUID.randomUUID().toString();
             user.setVerification_code(verification_code);
+            if(registerDTO.getType().equals("seller")){
+                user.setUserType(UserType.VENDOR);
+            }
             userService.saveUser(user);
             return Response.ok().entity("Registered Successfully").build();
         }

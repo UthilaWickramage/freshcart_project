@@ -5,6 +5,15 @@ public class RegisterDTO extends AuthDTO{
     private String lname;
     private String shop_name;
     private String mobile;
+private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getfname() {
         return fname;

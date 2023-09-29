@@ -35,6 +35,18 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "category_id")
     private Category categoryId;
 
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User userId;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productId")
     private Set<ProductImage> productImage = new HashSet<>();
 

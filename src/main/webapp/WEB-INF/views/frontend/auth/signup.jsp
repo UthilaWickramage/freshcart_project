@@ -103,6 +103,13 @@
                 let fname = document.getElementById('fname').value;
                 let lname = document.getElementById('lname').value;
                 let password = document.getElementById('password').value;
+                let radiobtn = document.getElementById('flexCheckDefault2');
+                let type;
+                if(radiobtn.checked){
+                    type= "seller";
+                }else{
+                    type:"customer";
+                }
                 fetch('${BASE_URL}register', {
                     method: 'post',
                     headers: {
@@ -112,7 +119,8 @@
                         email: email,
                         fname: fname,
                         lname: lname,
-                        password: password
+                        password: password,
+                        type:type,
                     })
                 }).then(response => response.text())
                     .then(text => alert(text));

@@ -62,7 +62,7 @@
                         <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
                             <div class="card card-product mb-lg-4">
                                 <div class="card-body text-center py-8">
-                                    <img src="${BASE_URL}assets/images/category/category-dairy-bread-eggs.jpg" alt="Grocery Ecommerce Template"
+                                    <img src="${BASE_URL}uploaded//categories//icons8-chat-64.png" alt="Grocery Ecommerce Template"
                                          class="mb-3 img-fluid">
                                     <div class="text-truncate">Dairy, Bread & Eggs</div>
                                 </div>

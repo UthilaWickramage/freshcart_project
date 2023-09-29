@@ -12,7 +12,7 @@ public class Main {
         tomcat.setPort(8080);
         tomcat.getConnector();
 
-        Context context = tomcat.addWebapp("/FreshCart", new File("src/main/webapp").getAbsolutePath());
+        Context context = tomcat.addWebapp("/FreshCart", new File("./src/main/webapp").getAbsolutePath());
         context.setAllowCasualMultipartParsing(true);
 
         try{

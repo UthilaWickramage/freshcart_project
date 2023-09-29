@@ -1,4 +1,5 @@
 <%@ taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 

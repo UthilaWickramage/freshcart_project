@@ -60,7 +60,7 @@
                                         <div> Forgot password? <a href="${BASE_URL}forgotPassword">Reset It</a></div>
                                     </div>
                                     <!-- btn -->
-                                    <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary signin">Sign In</button>
+                                    <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary sign_in">Sign In</button>
                                     </div>
                                     <!-- link -->
                                     <div>Do not have an account? <a href="${BASE_URL}register"> Sign Up</a></div>
@@ -77,20 +77,31 @@
     </layout:put>
     <layout:put block="script">
         <script type="text/javascript">
-            document.getElementsByClassName('signin').item(0).addEventListener('click', () => {
+            document.getElementsByClassName('sign_in').item(0).addEventListener('click', () => {
+
                 let email = document.getElementById('email').value;
                 let password = document.getElementById('password').value;
                 fetch('${BASE_URL}signin', {
                     method: 'post',
                     headers: {
-                        'Content-Type':'application/json'
+                        'Content-Type':'application/json',
+                        'Accept': 'application/json',
                     },
                     body: JSON.stringify({
                         email: email,
                         password: password
                     })
-                }).then(response => response.text())
-                    .then(text => alert(text));
+                }).then(response => response.json())
+                    .then(json =>{
+
+                        sessionStorage.setItem("accessToken",json.accessToken)
+                        sessionStorage.setItem("refreshToken",json.refreshToken)
+                        sessionStorage.setItem("expireIn",json.expireIn);
+                        })
+                    .catch(e=>{
+                        alert(e)
+
+                });
             });
         </script>
     </layout:put>

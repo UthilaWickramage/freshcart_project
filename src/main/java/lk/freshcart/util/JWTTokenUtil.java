@@ -24,7 +24,7 @@ public class JWTTokenUtil {
     private static final String SECRET = "vvupe&spFcEt*z@#nAWUtzjRIegYgirDWwQ*1lNe0fhju!k@s$GECsemueGck7v7";
 
     //access token life is 30 minutes
-    private static final Long TOKEN_LIFE = 30L;
+    private static final Long TOKEN_LIFE = 10L;
 
     //refresh token life is a month
     private static final Long REFRESH_TOKEN_LIFE = 43200L;
@@ -100,6 +100,7 @@ public class JWTTokenUtil {
         Map<String, String> claims = new HashMap<>();
         claims.put(CLAIM_KEY_EMAIL, user.getEmail());
         claims.put(CLAIM_KEY_PASSWORD, user.getPassword());
+        System.out.println(user.getPassword());
         claims.put(CLAIM_KEY_CREATED, new Date().toString());
         return generateToken(claims, TOKEN_LIFE, user.getEmail(),user.getPassword());
     }
@@ -108,6 +109,7 @@ public class JWTTokenUtil {
         Map<String, String> claims = new HashMap<>();
         claims.put(CLAIM_KEY_EMAIL, user.getEmail());
         claims.put(CLAIM_KEY_PASSWORD, user.getPassword());
+        System.out.println(user.getPassword());
         claims.put(CLAIM_KEY_CREATED, new Date().toString());
         return generateToken(claims, REFRESH_TOKEN_LIFE, user.getEmail(), user.getPassword());
     }

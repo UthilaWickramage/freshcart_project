@@ -4,7 +4,16 @@ public class CategoryDTO {
     private String title;
     private String slug;
     private String desc;
-    private String file;
+    private Object file;
+
+    public Object getFile() {
+        return file;
+    }
+
+    public void setFile(Object file) {
+        this.file = file;
+    }
+
     private String status;
 
     public CategoryDTO() {
@@ -34,13 +43,6 @@ public class CategoryDTO {
         this.desc = desc;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 
     public String getStatus() {
         return status;

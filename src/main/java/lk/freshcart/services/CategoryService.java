@@ -7,7 +7,10 @@ import lk.freshcart.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class CategoryService {
+    //give category by the title
     public Category getCategoryByTitle(String title) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -16,10 +19,28 @@ public class CategoryService {
             return null;
         }
     }
-
-    public void SaveCategory(Category category){
+    //get all categories
+    public List<Category> getAllCategories() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction= session.beginTransaction();
+        try {
+            return session.createQuery("select c from Category c", Category.class).getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    //get all categories with published
+    public List<Category> getAllActiveCategories() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            return session.createQuery("select c from Category c where c.status=:status", Category.class).setParameter("status", true).getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+//save category object to the database
+    public void SaveCategory(Category category) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
         session.persist(category);
         transaction.commit();
         session.close();

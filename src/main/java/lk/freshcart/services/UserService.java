@@ -25,7 +25,9 @@ public class UserService {
     public User getUserByEmailAndPassword(String email, String password){
         try{
             Session session = HibernateUtil.getSessionFactory().openSession();
-            return session.createQuery("select u from User u where u.email=:email and u.password=:password",User.class).setParameter("email",email).setParameter("password",EncryptionUtil.encrypt(password)).uniqueResult();
+
+            System.out.println(password);
+            return session.createQuery("select u from User u where u.email=:email and u.password=:password",User.class).setParameter("email",email).setParameter("password",password).uniqueResult();
         }catch(NoResultException e){
             return null;
         }

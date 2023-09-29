@@ -66,16 +66,18 @@
                                     <div class="mb-3 col-lg-12 ">
                                         <label class="form-label">Descriptions</label>
 
-                                        <div class="py-8" id="editor"></div>
+                                        <div class="py-8 d-grid" >
+                                            <textarea class="form-control" id="editor" cols="10"></textarea>
+                                        </div>
                                     </div>
 
                                     <!-- input -->
                                     <div class="mb-3 col-lg-12 ">
                                         <label class="form-label" id="productSKU">Status</label><br>
                                         <select class="form-select" id="status">
-                                            <option selected>Status</option>
-                                            <option value="Dairy, Bread & Eggs">Active</option>
-                                            <option value="Snacks & Munchies">Inactive</option>
+                                            <option value="status" selected>Status</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
                                         </select>
 
                                     </div>
@@ -100,31 +102,29 @@
     <layout:put block="script">
         <script type="text/javascript">
             document.getElementsByClassName('category-btn').item(0).addEventListener('click', () => {
-                let file = document.getElementById('file-input').value;
+                let file = document.getElementById('file-input').files[0];
                 let title = document.getElementById('name').value;
                 let desc = document.getElementById('editor').value;
                 let slug = document.getElementById('slug').value;
                 let status = document.getElementById('status').value;
 
-                console.log(title)
-                console.log(desc)
-                console.log(slug)
-                console.log(status)
+                let form = new FormData();
+                form.append("file",file);
+                form.append("title",title);
+                form.append("desc",desc);
+                form.append("slug",slug);
+                form.append("status",status)
+
+
 
                 fetch('${BASE_URL}add_category', {
                   method: 'post',
                   headers: {
-                    'Content-Type':'application/json'
+                    'Content-Type':'multipart/form-data'
                   },
-                  body: JSON.stringify({
-                    file:file,
-                      title:title,
-                      desc:desc,
-                      slug:slug,
-                      status:status,
-                  })
+                  body: form,
                 }).then(response => response.text())
-                        .then(text => alert(text));
+                        .then(text => console.log(text));
             });
         </script>
     </layout:put>

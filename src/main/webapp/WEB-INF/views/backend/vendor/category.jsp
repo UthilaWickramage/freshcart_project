@@ -1,4 +1,5 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <layout:extends name="vendor_base">
     <layout:put block="content">
         <!-- main -->
@@ -28,7 +29,8 @@
                                     <div class="col-lg-4 col-md-6 col-12 mb-2 mb-md-0">
                                         <!-- form -->
                                         <form class="d-flex" role="search">
-                                            <input class="form-control" type="search" placeholder="Search Category" aria-label="Search">
+                                            <input class="form-control" type="search" placeholder="Search Category"
+                                                   aria-label="Search">
                                         </form>
                                     </div>
                                     <!-- select option -->
@@ -50,7 +52,8 @@
                                         <tr>
                                             <th>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                           id="checkAll">
                                                     <label class="form-check-label" for="checkAll">
 
                                                     </label>
@@ -58,319 +61,65 @@
                                             </th>
                                             <th>Icon</th>
                                             <th> Name</th>
-                                            <th>Proudct</th>
+                                            <th>Description</th>
                                             <th>Status</th>
 
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <c:forEach items="${it}" var="items">
+                                            <tr>
 
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryOne">
-                                                    <label class="form-check-label" for="categoryOne">
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="categoryOne">
+                                                        <label class="form-check-label" for="categoryOne">
 
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/snacks.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Snack & Munchies</a></td>
-                                            <td>12</td>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="#!"> <img src="${BASE_URL}${items.image_url}" alt=""
+                                                                       class="icon-shape icon-sm"></a>
+                                                </td>
+                                                <td><a href="#" class="text-reset">${items.name}</a></td>
+                                                <td>${items.description}</td>
 
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${items.status}">
+                                                            <span class="badge bg-light-primary text-dark-primary">Published</span>
 
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="badge bg-light-danger text-dark-danger">Unpublished</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
 
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryTwo">
-                                                    <label class="form-check-label" for="categoryTwo">
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <a href="#" class="text-reset" data-bs-toggle="dropdown"
+                                                           aria-expanded="false">
+                                                            <i class="feather-icon icon-more-vertical fs-5"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#"><i
+                                                                    class="bi bi-trash me-3"></i>Delete</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i
+                                                                    class="bi bi-pencil-square me-3 "></i>Edit</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/bakery.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Bakery & Biscuits</a></td>
-                                            <td>8</td>
 
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
+                                        </c:forEach>
 
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
 
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryThree">
-                                                    <label class="form-check-label" for="categoryThree">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/baby-food.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Baby Care</a></td>
-                                            <td>32</td>
-
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryFour">
-                                                    <label class="form-check-label" for="categoryFour">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/wine.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Cold Drinks & Juices</a></td>
-                                            <td>34</td>
-
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryFive">
-                                                    <label class="form-check-label" for="categoryFive">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/toiletries.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Toiletries</a></td>
-                                            <td>23</td>
-
-                                            <td>
-                                                <span class="badge bg-light-danger text-dark-danger">Unpublished</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categorySeven">
-                                                    <label class="form-check-label" for="categorySeven">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/dairy.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Dairy, Bread & Eggs</a></td>
-                                            <td>16</td>
-
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryEight">
-                                                    <label class="form-check-label" for="categoryEight">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/fish.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Chicken, Meat & Fish</a></td>
-                                            <td>14</td>
-
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryNine">
-                                                    <label class="form-check-label" for="categoryNine">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/fruit.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Fruits & Vegetables</a></td>
-                                            <td>32</td>
-
-                                            <td>
-                                                <span class="badge bg-light-primary text-dark-primary">Published</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="categoryTen">
-                                                    <label class="form-check-label" for="categoryTen">
-
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#!"> <img src="${BASE_URL}assets/images/icons/petfoods.svg" alt=""
-                                                                   class="icon-shape icon-sm"></a>
-                                            </td>
-                                            <td><a href="#" class="text-reset">Pet Food</a></td>
-                                            <td>25</td>
-
-                                            <td>
-                                                <span class="badge bg-light-danger text-dark-danger">Unpublished</span>
-                                            </td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
 

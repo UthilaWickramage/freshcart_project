@@ -1,4 +1,5 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <layout:extends name="vendor_base">
   <layout:put block="content">
     <main class="main-content-wrapper">
@@ -42,9 +43,11 @@
                     <label class="form-label">Product Category</label>
                     <select class="form-select">
                       <option selected>Product Category</option>
-                      <option value="Dairy, Bread & Eggs">Dairy, Bread & Eggs</option>
-                      <option value="Snacks & Munchies">Snacks & Munchies</option>
-                      <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                      <c:forEach items="${it}" var="items">
+                        <option value="${items.id}"><c:out value="${items.name}"></c:out></option>
+                      </c:forEach>
+
+
                     </select>
                   </div>
                   <!-- input -->
