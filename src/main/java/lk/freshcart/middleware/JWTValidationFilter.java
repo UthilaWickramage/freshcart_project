@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.PreMatching;
+import jakarta.ws.rs.core.Cookie;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;
 import lk.freshcart.entity.User;
@@ -14,6 +15,7 @@ import lk.freshcart.services.UserService;
 import lk.freshcart.util.JWTTokenUtil;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Provider
 @Priority(1)
@@ -34,6 +36,8 @@ public class JWTValidationFilter implements ContainerRequestFilter {
             //returns without going further for the above paths
             return;
         }
+
+
         //check if the headers contain authentication
         if (containerRequestContext.getHeaders().getFirst("Authorization") == null) {
             //send unauthorized response
