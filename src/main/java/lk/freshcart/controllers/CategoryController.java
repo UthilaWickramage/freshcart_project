@@ -3,6 +3,7 @@ package lk.freshcart.controllers;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Response;
 import lk.freshcart.dto.CategoryDTO;
 import lk.freshcart.entity.Category;
@@ -25,6 +26,7 @@ public class CategoryController {
     public Viewable get() {
 
         List<Category> allCategories = categoryService.getAllActiveCategories();
+
         return new Viewable("/backend/vendor/category",allCategories);
     }
 
@@ -43,14 +45,14 @@ public class CategoryController {
 
     @Path("add_category")
     @POST
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response save(@FormDataParam("file") InputStream in,
+    public Response save(
+            @FormDataParam("file") InputStream in,
                          @FormDataParam("file") FormDataContentDisposition info,
                          @FormParam("title") String title,
-                         @FormParam("slug") String slug,
+                         @FormParam("category") String slug,
                          @FormParam("desc") String desc,
                          @FormParam("status") String status
+
     ) throws IOException {
 
         Category categoryByTitle = categoryService.getCategoryByTitle(title);

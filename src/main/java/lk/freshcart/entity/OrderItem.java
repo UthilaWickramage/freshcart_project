@@ -11,6 +11,15 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order orderId;
+private Integer qty;
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")

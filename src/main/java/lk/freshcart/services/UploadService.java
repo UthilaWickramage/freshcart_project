@@ -1,6 +1,8 @@
 package lk.freshcart.services;
 
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 
 public class UploadService {
     public static void writeToFile(InputStream uploadedInputStream,
@@ -24,4 +26,6 @@ public class UploadService {
         }
 
     }
+
+
 }

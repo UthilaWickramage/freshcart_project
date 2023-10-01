@@ -53,6 +53,19 @@
 <script src="${BASE_URL}assets/js/theme.min.js"></script>
 <script src="${BASE_URL}assets/js/vendors/password.js"></script>
 
+<script>
+    window.addEventListener('load', function () {
+        navigator
+            .serviceWorker
+            .register('/request-interceptor.js')
+            .then(function (registration) {
+                console.log('Service worker registered with scope: ', registration.scope);
+            }, function (err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+</script>
+
 <layout:block name="script">
 
 </layout:block>

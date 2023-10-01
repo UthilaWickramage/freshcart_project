@@ -47,16 +47,16 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<ProductImage> productImage = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<Reviews> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<OrderItem> orderItems = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<WishListItem> wishlistItems = new HashSet<>();
 
     public Set<WishListItem> getWishlistItems() {
@@ -67,7 +67,7 @@ public class Product extends BaseEntity {
         this.wishlistItems = wishlistItems;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<CartItem> cartItems = new HashSet<>();
 
     public Set<OrderItem> getOrderItems() {

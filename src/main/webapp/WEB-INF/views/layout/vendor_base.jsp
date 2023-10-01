@@ -72,6 +72,8 @@
 <script src="${BASE_URL}assets/libs/quill/dist/quill.min.js"></script>
 <script src="${BASE_URL}assets/js/vendors/editor.js"></script>
 <script src="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+<layout:block name="script">
 
+</layout:block>
 </body>
 </html>

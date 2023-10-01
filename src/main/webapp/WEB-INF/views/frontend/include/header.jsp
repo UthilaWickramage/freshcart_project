@@ -47,7 +47,7 @@
         </div>
         <div class="row align-items-center pt-6 pb-4 mt-4 mt-lg-0">
             <div class="col-xl-2 col-md-3 mb-4 mb-md-0 col-12 text-center text-md-start">
-                <a href="../index.html"><img src="${BASE_URL}assets/images/logo/freshcart-logo.svg"
+                <a href="${BASE_URL}"><img src="${BASE_URL}assets/images/logo/freshcart-logo.svg"
                                              alt="eCommerce HTML Template"></a>
 
             </div>

@@ -438,7 +438,7 @@
 <!-- Javascript-->
 <script src="${BASE_URL}assets/libs/rater-js/index.js"></script>
 <script src="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-
+<script src="${BASE_URL}assets/js/request-interceptor.js" type="text/javascript"></script>
 <!-- Libs JS -->
 <script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -456,6 +456,9 @@
 <script src="${BASE_URL}assets/js/vendors/increment-value.js"></script>
 
 
+<layout:block name="script">
+
+</layout:block>
 
 </body>
 
