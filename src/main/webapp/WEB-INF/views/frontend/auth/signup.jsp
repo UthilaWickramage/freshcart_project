@@ -108,7 +108,7 @@
                 if(radiobtn.checked){
                     type= "seller";
                 }else{
-                    type:"customer";
+                    type="customer";
                 }
                 fetch('${BASE_URL}register', {
                     method: 'post',

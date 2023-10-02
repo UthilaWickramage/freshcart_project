@@ -9,6 +9,24 @@ public class CartItem extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer qty;
+private Double item_sale_total;
+private Double item_shipping_total;
+
+    public Double getItem_sale_total() {
+        return item_sale_total;
+    }
+
+    public void setItem_sale_total(Double item_sale_total) {
+        this.item_sale_total = item_sale_total;
+    }
+
+    public Double getItem_shipping_total() {
+        return item_shipping_total;
+    }
+
+    public void setItem_shipping_total(Double item_shipping_total) {
+        this.item_shipping_total = item_shipping_total;
+    }
 
     public Integer getQty() {
         return qty;

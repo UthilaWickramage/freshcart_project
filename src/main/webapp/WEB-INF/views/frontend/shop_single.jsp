@@ -601,7 +601,8 @@
                 fetch('${BASE_URL}cart', {
                     method: 'post',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Authorization':'Bearer '+localStorage.getItem("accessToken"),
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         id: id,
@@ -611,7 +612,7 @@
                 }).then(response => response.text())
                     .then((text)=>{
                         if(text=="success"){
-                            window.location.href='${BASE_URL}cart'
+                            window.location.reload();
                         }else {
                             alert(text)
                         }

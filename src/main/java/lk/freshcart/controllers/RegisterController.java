@@ -41,7 +41,10 @@ public class RegisterController {
             user.setVerification_code(verification_code);
             if(registerDTO.getType().equals("seller")){
                 user.setUserType(UserType.VENDOR);
+            }else{
+                user.setUserType(UserType.CUSTOMER);
             }
+            user.setActive(true);
             userService.saveUser(user);
             return Response.ok().entity("Registered Successfully").build();
         }

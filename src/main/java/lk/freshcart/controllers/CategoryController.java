@@ -45,6 +45,7 @@ public class CategoryController {
 
     @Path("add_category")
     @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response save(
             @FormDataParam("file") InputStream in,
                          @FormDataParam("file") FormDataContentDisposition info,

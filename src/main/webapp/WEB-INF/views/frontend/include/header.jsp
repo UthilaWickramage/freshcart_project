@@ -118,15 +118,17 @@
                         </a>
                     </div>
                     <div class="text-center ms-6">
-                        <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample" role="button"
-                           aria-controls="offcanvasRight" class="text-reset">
+                        <a href="${BASE_URL}cart"
+<%--                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample" role="button"--%>
+<%--                           aria-controls="offcanvasRight" --%>
+                           class="text-reset">
                             <div class="text-center">
                                 <div class="">
                                     <i class="bi bi-cart2 fs-4"></i>
 
 
                                 </div>
-                                <p class="mb-0 d-none d-xl-block small">Shopping Cart</p>
+                                <a href="${BASE_URL}cart" class="mb-0 d-none d-xl-block small text-dark-info">Shopping Cart</a>
                             </div>
                         </a>
                     </div>
