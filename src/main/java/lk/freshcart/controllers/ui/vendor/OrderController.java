@@ -1,9 +1,10 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.ui.vendor;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import lk.freshcart.annotations.IsVendor;
 import org.glassfish.jersey.server.mvc.Viewable;
-
+@IsVendor
 @Path("/")
 public class OrderController {
     @Path("vendor_orders")
@@ -12,11 +13,6 @@ public class OrderController {
         return new Viewable("/backend/vendor/order_list");
     }
 
-    @Path("admin_orders")
-    @GET
-    public Viewable view(){
-        return new Viewable("/backend/admin/order_list");
-    }
 
     @Path("vendor_order")
     @GET
@@ -24,9 +20,4 @@ public class OrderController {
         return new Viewable("/backend/vendor/order_single");
     }
 
-    @Path("admin_order")
-    @GET
-    public Viewable admin_order(){
-        return new Viewable("/backend/admin/order_single");
-    }
 }

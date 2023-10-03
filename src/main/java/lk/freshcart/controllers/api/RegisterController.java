@@ -1,4 +1,4 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.api;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;

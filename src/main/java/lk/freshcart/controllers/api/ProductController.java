@@ -1,4 +1,4 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.api;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.FormParam;
@@ -6,6 +6,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
+import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
 import lk.freshcart.entity.ProductImage;
@@ -24,32 +25,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+@IsAuthorized
 @Path("/")
 public class ProductController {
     @Inject
     ProductService productService;
-
-    @Path("vendor_products")
-    @GET
-    public Viewable get() {
-        List<Product> allproducts = productService.getAllproducts();
-        for(Product product:allproducts){
-            System.out.println(product.getTitle());
-            Set<ProductImage> productImage = product.getProductImage();
-            for(ProductImage i :productImage){
-                System.out.println(i.getUrl());
-            }
-        }
-        return new Viewable("/backend/vendor/products",allproducts);
-    }
-
-    @Path("add-product")
-    @GET
-    public Viewable view() {
-        CategoryService categoryService = new CategoryService();
-        List<Category> allCategories = categoryService.getAllActiveCategories();
-        return new Viewable("/backend/vendor/addProduct", allCategories);
-    }
 
     @Path("add-product")
     @POST
@@ -112,10 +92,4 @@ public class ProductController {
 
     }
 
-    @Path("admin_products")
-    @GET
-    public Viewable viewAll() {
-        List<Product> allproducts = productService.getAllproducts();
-        return new Viewable("/backend/admin/products",allproducts);
-    }
 }

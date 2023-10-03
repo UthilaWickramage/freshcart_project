@@ -30,7 +30,7 @@ public class NumberController {
         }
         System.out.println(number);
         if(num==number){
-            return Response.status(Response.Status.OK).entity("You in").build();
+            return Response.status(Response.Status.OK).entity("You Win").build();
         }else{
             return Response.status(Response.Status.BAD_REQUEST).entity("Try Again").build();
         }

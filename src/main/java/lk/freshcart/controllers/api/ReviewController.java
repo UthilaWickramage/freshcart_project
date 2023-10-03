@@ -1,4 +1,4 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.api;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -7,27 +7,18 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.dto.ReviewDTO;
 import lk.freshcart.entity.Reviews;
 import lk.freshcart.services.ProductService;
 import org.glassfish.jersey.server.mvc.Viewable;
-
-@Path("/")
+@IsAuthorized
+@Path("/reviews")
 public class ReviewController {
     @Inject
     ProductService productService;
-    @Path("vendor_reviews")
-    @GET
-    public Viewable get(){
-        return new Viewable("/backend/vendor/reviews");
-    }
-@Path("admin_reviews")
-    @GET
-    public Viewable view(){
-        return new Viewable("/backend/admin/reviews");
-    }
 
-    @Path("reviews")
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(ReviewDTO reviewDTO){

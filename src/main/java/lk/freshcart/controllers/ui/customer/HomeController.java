@@ -1,8 +1,9 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.ui.customer;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import lk.freshcart.annotations.IsUser;
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
 import lk.freshcart.services.CategoryService;
@@ -14,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+@IsUser
 @Path("/")
 
 public class HomeController {

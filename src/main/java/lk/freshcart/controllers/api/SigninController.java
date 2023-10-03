@@ -1,14 +1,20 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.api;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.dto.AuthDTO;
 import lk.freshcart.dto.AuthResponseDTO;
 import lk.freshcart.entity.User;
+import lk.freshcart.entity.UserType;
 import lk.freshcart.services.UserService;
 import lk.freshcart.util.EncryptionUtil;
 import lk.freshcart.util.JWTTokenUtil;
@@ -16,9 +22,14 @@ import org.glassfish.jersey.server.mvc.Viewable;
 
 import java.util.Date;
 
+@IsAuthorized
 @Singleton
 @Path("/signin")
 public class SigninController {
+    @Context
+    HttpServletRequest request;
+    @Context
+    HttpServletResponse response;
     @Inject
     JWTTokenUtil jwtTokenUtil;
     @Inject
@@ -46,7 +57,14 @@ public class SigninController {
                     String refreshToken = jwtTokenUtil.generateRefreshToken(userByEmail);
                     Date expiredDateFromToken = jwtTokenUtil.getExpiredDateFromToken(accessToken);
                     AuthResponseDTO authResponseDTO = new AuthResponseDTO(accessToken, refreshToken, expiredDateFromToken.toString());
-
+                    HttpSession session = request.getSession();
+                    if(userByEmail.getUserType()== UserType.CUSTOMER){
+                        session.setAttribute("user",userByEmail);
+                    }else if(userByEmail.getUserType()== UserType.VENDOR){
+                        session.setAttribute("vendor",userByEmail);
+                    }else if(userByEmail.getUserType()== UserType.ADMIN){
+                        session.setAttribute("admin",userByEmail);
+                    }
                     return Response.status(Response.Status.OK).entity(authResponseDTO).build();
                 } else {
                     return Response.status(Response.Status.BAD_REQUEST).entity("Username or password incorrect").build();

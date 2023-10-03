@@ -1,9 +1,10 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.ui.customer;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import lk.freshcart.annotations.IsUser;
 import lk.freshcart.entity.Product;
 import lk.freshcart.services.ProductService;
 import org.glassfish.jersey.server.mvc.Viewable;
@@ -11,6 +12,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.ArrayList;
 import java.util.List;
 
+@IsUser
 @Path("/")
 public class SingleViewController {
     @Inject

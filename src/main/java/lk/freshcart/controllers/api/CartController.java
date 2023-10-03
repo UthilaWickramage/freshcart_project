@@ -1,9 +1,10 @@
-package lk.freshcart.controllers;
+package lk.freshcart.controllers.api;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.dto.CartDTO;
 import lk.freshcart.entity.CartItem;
 import lk.freshcart.entity.User;
@@ -12,13 +13,11 @@ import lk.freshcart.services.UserService;
 import lk.freshcart.util.JWTTokenUtil;
 import org.glassfish.jersey.server.mvc.Viewable;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
-
+@IsAuthorized
 @Path("/cart")
-public class cartController {
+public class CartController {
     @Inject
     CartService cartService;
     @Inject
@@ -26,12 +25,7 @@ public class cartController {
     @Inject
     private JWTTokenUtil tokenUtil;
 
-    @GET
-    public Viewable get() {
-        Map map = cartService.getAllCartItems();
 
-        return new Viewable("/frontend/cart", map);
-    }
 
     @PUT
     public Response remove(@FormParam("id") Long id) {

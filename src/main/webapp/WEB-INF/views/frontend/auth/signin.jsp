@@ -147,11 +147,12 @@
                     })
                 }).then(response => response.json())
                     .then(json => {
-
+alert(json)
                         localStorage.setItem("accessToken", json.accessToken)
                         localStorage.setItem("refreshToken", json.refreshToken)
                         localStorage.setItem("expireIn", json.expireIn);
                         alert("signin successfull")
+                        document.location.href = "${BASE_URL}cart";
                     })
                     .catch(e => {
                         alert(e)
