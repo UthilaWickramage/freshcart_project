@@ -1,4 +1,5 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <layout:extends name="base">
     <layout:put block="content">
         <main>
@@ -25,27 +26,33 @@
                                     <div class="row">
                                         <div class="col-lg-5">
                                             <!-- form -->
+                                            <c:set value="${it}" var="user" scope="page"/>
                                             <form>
                                                 <!-- input -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Name</label>
-                                                    <input type="text" class="form-control" placeholder="jitu chauhan">
+                                                    <input type="text" disabled
+                                                           value="${user.first_name} ${user.last_name}"
+                                                           class="form-control">
                                                 </div>
                                                 <!-- input -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" placeholder="example@gmail.com">
+                                                    <input disabled type="email" value="${user.email}"
+                                                           class="form-control" placeholder="example@gmail.com">
                                                 </div>
                                                 <!-- input -->
                                                 <div class="mb-5">
                                                     <label class="form-label">Phone</label>
-                                                    <input type="text" class="form-control" placeholder="Phone number">
+                                                    <input type="text" class="form-control" id="mobile"
+                                                           value="${user.mobile}" placeholder="Phone number">
                                                 </div>
                                                 <!-- button -->
                                                 <div class="mb-3">
-                                                    <button class="btn btn-primary">Save Details</button>
+                                                    <button class="btn btn-primary " id="save-btn">Save Details</button>
                                                 </div>
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -56,18 +63,21 @@
                                     <form class=" row row-cols-1 row-cols-lg-2">
                                         <!-- input -->
                                         <div class="mb-3 col">
-                                            <label class="form-label">New Password</label>
-                                            <input type="password" class="form-control" placeholder="**********">
+                                            <label class="form-label">Current Password</label>
+                                            <input type="password" id="current" class="form-control"
+                                                   placeholder="**********">
                                         </div>
                                         <!-- input -->
                                         <div class="mb-3 col">
-                                            <label class="form-label">Current Password</label>
-                                            <input type="password" class="form-control" placeholder="**********">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" id="new" class="form-control"
+                                                   placeholder="**********">
                                         </div>
                                         <!-- input -->
                                         <div class="col-12">
-                                            <p class="mb-4">Cannot remember your current password?<a href="#"> Reset your password.</a></p>
-                                            <a href="#" class="btn btn-primary">Save Password</a>
+                                            <p class="mb-4">Cannot remember your current password?<a href="#"> Reset
+                                                your password.</a></p>
+                                            <a href="#" class="btn btn-primary" id="save-password">Save Password</a>
                                         </div>
                                     </form>
                                 </div>
@@ -76,7 +86,8 @@
                                     <!-- heading -->
                                     <h5 class="mb-4">Delete Account</h5>
                                     <p class="mb-2">Would you like to delete your account?</p>
-                                    <p class="mb-5">This account contain 12 orders, Deleting your account will remove all the order details
+                                    <p class="mb-5">This account contain 12 orders, Deleting your account will remove
+                                        all the order details
                                         associated with it.</p>
                                     <!-- btn -->
                                     <a href="#" class="btn btn-outline-danger">I want to delete my account</a>
@@ -87,5 +98,37 @@
                 </div>
             </section>
         </main>
+    </layout:put>
+    <layout:put block="script">
+        <script>
+            document.getElementById('save-btn').addEventListener('click', () => {
+                let mobile = document.getElementById("mobile").value;
+                let formData = new FormData();
+                formData.append("mobile", mobile);
+                fetch('${BASE_URL}account-settings', {
+                    method: 'put',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
+                    },
+                    body: formData,
+                }).then(response => response.text()).then(text => alert(text))
+
+
+            })
+
+            document.getElementById('save-password').addEventListener('click', () => {
+
+                let form = new FormData()
+                form.append("new", document.getElementById('new').value)
+                form.append("current", document.getElementById('current').value)
+                fetch('${BASE_URL}account-settings',{
+                    method:'post',
+                    headers:{
+                        'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
+                    },
+                    body:form,
+                }).then(response=>response.text()).then(text=>alert(text))
+            })
+        </script>
     </layout:put>
 </layout:extends>

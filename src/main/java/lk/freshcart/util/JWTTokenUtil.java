@@ -24,7 +24,7 @@ public class JWTTokenUtil {
     private static final String SECRET = "vvupe&spFcEt*z@#nAWUtzjRIegYgirDWwQ*1lNe0fhju!k@s$GECsemueGck7v7";
 
     //access token life is 30 minutes
-    private static final Long TOKEN_LIFE = 10L;
+    private static final Long TOKEN_LIFE = 45L;
 
     //refresh token life is a month
     private static final Long REFRESH_TOKEN_LIFE = 43200L;

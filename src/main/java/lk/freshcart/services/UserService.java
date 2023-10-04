@@ -16,6 +16,14 @@ public class UserService {
         return session.get(User.class, id);
     }
 
+    public void saveMobile(Long id,String mobile){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = session.get(User.class, id);
+        user.setMobile(mobile);
+        transaction.commit();
+    }
+
     public User getByEmail(String email) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -51,6 +59,14 @@ public class UserService {
         session.persist(user);
         transaction.commit();
         session.close();
+    }
+
+    public void changePassword(Long id,String password){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = session.get(User.class, id);
+        user.setPassword(password);
+        transaction.commit();
     }
 
     public List<User> getAllCustomers() {

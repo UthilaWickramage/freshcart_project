@@ -95,14 +95,15 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="ms-6 text-center">
-                        <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#userModal">
+                        <a href="${BASE_URL}account-settings" class="text-reset">
                             <div class="lh-1">
                                 <div class="mb-2">
                                     <i class="bi bi-person-circle fs-4"></i>
 
                                 </div>
-                                <p class="mb-0 d-none d-xl-block small">Sign up</p>
+                                <p class="mb-0 d-none d-xl-block small">My Account</p>
                             </div>
                         </a>
                     </div>

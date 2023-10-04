@@ -152,7 +152,7 @@ alert(json)
                         localStorage.setItem("refreshToken", json.refreshToken)
                         localStorage.setItem("expireIn", json.expireIn);
                         alert("signin successfull")
-                        document.location.href = "${BASE_URL}cart";
+                        document.location.href = "${BASE_URL}home";
                     })
                     .catch(e => {
                         alert(e)
