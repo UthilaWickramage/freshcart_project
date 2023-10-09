@@ -8,7 +8,9 @@ import lk.freshcart.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
     public User getById(Long id) {
@@ -59,6 +61,23 @@ public class UserService {
         session.persist(user);
         transaction.commit();
         session.close();
+    }
+
+    public void updateStatus(String code){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try{
+           Optional<User> op= session.createQuery("select u from User u where u.verification_code=:verification_code").setParameter("verification_code",code).uniqueResultOptional();
+
+       if(op.isPresent()){
+           User user = op.get();
+           user.setActive(true);
+           user.setEmail_verified_at(new Timestamp(System.currentTimeMillis()).toString());
+       }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        transaction.commit();
     }
 
     public void changePassword(Long id,String password){

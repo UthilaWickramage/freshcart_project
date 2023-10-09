@@ -9,6 +9,8 @@ import jakarta.ws.rs.core.Response;
 import lk.freshcart.dto.RegisterDTO;
 import lk.freshcart.entity.User;
 import lk.freshcart.entity.UserType;
+import lk.freshcart.mail.VerificationEmail;
+import lk.freshcart.providers.MailServiceProvider;
 import lk.freshcart.services.UserService;
 import lk.freshcart.util.EncryptionUtil;
 import org.glassfish.jersey.server.mvc.Viewable;
@@ -44,8 +46,10 @@ public class RegisterController {
             }else{
                 user.setUserType(UserType.CUSTOMER);
             }
-            user.setActive(true);
+            user.setActive(false);
             userService.saveUser(user);
+            VerificationEmail verificationEmail = new VerificationEmail(user.getEmail(),user.getFirst_name(),verification_code);
+            MailServiceProvider.getInstance().sendEmail(verificationEmail);
             return Response.ok().entity("Registered Successfully").build();
         }
     }

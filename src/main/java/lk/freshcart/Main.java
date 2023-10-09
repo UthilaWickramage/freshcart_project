@@ -1,5 +1,6 @@
 package lk.freshcart;
 
+import lk.freshcart.listeners.ContextListener;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
@@ -14,6 +15,7 @@ public class Main {
 
         Context context = tomcat.addWebapp("/FreshCart", new File("./src/main/webapp").getAbsolutePath());
         context.setAllowCasualMultipartParsing(true);
+        context.addApplicationListener(ContextListener.class.getName());
 
         try{
             tomcat.start();
