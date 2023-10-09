@@ -28,8 +28,6 @@ import java.util.Date;
 public class SigninController {
     @Context
     HttpServletRequest request;
-    @Context
-    HttpServletResponse response;
     @Inject
     JWTTokenUtil jwtTokenUtil;
     @Inject
@@ -53,26 +51,51 @@ public class SigninController {
             User userByEmail = userService.getByEmail(authDTO.getEmail());
             if (userByEmail != null) {
                 if (EncryptionUtil.encrypt(authDTO.getPassword()).equals(userByEmail.getPassword())) {
-                    String accessToken = jwtTokenUtil.generateAccessToken(userByEmail);
-                    String refreshToken = jwtTokenUtil.generateRefreshToken(userByEmail);
-                    Date expiredDateFromToken = jwtTokenUtil.getExpiredDateFromToken(accessToken);
-                    AuthResponseDTO authResponseDTO = new AuthResponseDTO(accessToken, refreshToken, expiredDateFromToken.toString());
-                    HttpSession session = request.getSession();
-                    if(userByEmail.getUserType()== UserType.CUSTOMER){
-                        session.setAttribute("user",userByEmail);
-                    }else if(userByEmail.getUserType()== UserType.VENDOR){
-                        session.setAttribute("vendor",userByEmail);
-                    }else if(userByEmail.getUserType()== UserType.ADMIN){
-                        session.setAttribute("admin",userByEmail);
+                    if (userByEmail.getActive() && !userByEmail.getEmail_verified_at().isEmpty()) {
+                        String accessToken = jwtTokenUtil.generateAccessToken(userByEmail);
+                        String refreshToken = jwtTokenUtil.generateRefreshToken(userByEmail);
+                        Date expiredDateFromToken = jwtTokenUtil.getExpiredDateFromToken(accessToken);
+                        AuthResponseDTO authResponseDTO = new AuthResponseDTO(accessToken, refreshToken, String.valueOf(expiredDateFromToken.getTime()));
+                        HttpSession session = request.getSession();
+                        if (userByEmail.getUserType() == UserType.CUSTOMER) {
+                            session.setAttribute("user", userByEmail.getId());
+                        } else if (userByEmail.getUserType() == UserType.VENDOR) {
+                            session.setAttribute("vendor", userByEmail.getId());
+                        } else if (userByEmail.getUserType() == UserType.ADMIN) {
+                            session.setAttribute("admin", userByEmail.getId());
+                        }
+                        return Response.status(Response.Status.OK).entity(authResponseDTO).build();
+                    } else {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("user", userByEmail.getId());
+                        return Response.status(Response.Status.FORBIDDEN).build();
                     }
-                    return Response.status(Response.Status.OK).entity(authResponseDTO).build();
                 } else {
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Username or password incorrect").build();
+                    return Response.status(Response.Status.UNAUTHORIZED).entity("Username or password incorrect").build();
                 }
             } else {
-                return Response.status(Response.Status.BAD_REQUEST).entity("username or password incorrect").build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity("username or password incorrect").build();
             }
         }
 
+    }
+
+    @POST
+    @Path("/refresh-token")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response refreshResponse(@FormParam("token") String refreshToken) {
+        User userbyEmail = userService.getByEmail(jwtTokenUtil.getEmailFromToken(refreshToken));
+        //if user is null
+        if (userbyEmail == null || !jwtTokenUtil.validateToken(refreshToken, userbyEmail)) {
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid refresh Token").build();
+
+        } else {
+            String accessToken = jwtTokenUtil.generateAccessToken(userbyEmail);
+            Date expiredDateFromToken = jwtTokenUtil.getExpiredDateFromToken(accessToken);
+            //send dto with old refresh token
+            AuthResponseDTO authResponseDTO = new AuthResponseDTO(accessToken, refreshToken, String.valueOf(expiredDateFromToken.getTime()));
+            return Response.ok().entity(authResponseDTO).build();
+        }
     }
 }

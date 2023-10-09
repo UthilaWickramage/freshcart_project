@@ -145,9 +145,16 @@
                         email: email,
                         password: password
                     })
-                }).then(response => response.json())
+                }).then(async response => {
+                    if(!response.ok){
+                        alert(response.text())
+                    }else{
+                        return response.json()
+                    }
+
+                })
                     .then(json => {
-alert(json)
+
                         localStorage.setItem("accessToken", json.accessToken)
                         localStorage.setItem("refreshToken", json.refreshToken)
                         localStorage.setItem("expireIn", json.expireIn);
