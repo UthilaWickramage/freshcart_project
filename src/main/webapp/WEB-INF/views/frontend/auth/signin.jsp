@@ -130,7 +130,7 @@
 
 
             document.getElementsByClassName('sign_in').item(0).addEventListener('click', () => {
-                let token = localStorage.getItem("accessToken")
+
                 let email = document.getElementById('email').value;
                 let password = document.getElementById('password').value;
                 fetch('${BASE_URL}signin', {
@@ -138,7 +138,7 @@
 
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json',
+
 
                     },
                     body: JSON.stringify({

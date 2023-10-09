@@ -60,6 +60,7 @@
     </div>
 </div>
 
+<script src="fetchScript.js"></script>
 <!-- Libs JS -->
 <script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

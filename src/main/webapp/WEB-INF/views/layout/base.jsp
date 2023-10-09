@@ -436,6 +436,7 @@
 <jsp:include page="../frontend/include/footer.jsp"/>
 
 <!-- Javascript-->
+<script src="fetchScript.js"></script>
 <script src="${BASE_URL}assets/libs/rater-js/index.js"></script>
 <script src="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 <script src="${BASE_URL}assets/js/request-interceptor.js" type="text/javascript"></script>
