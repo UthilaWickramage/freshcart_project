@@ -1,5 +1,5 @@
 package lk.freshcart.entity;
 
 public enum CardType {
-    VISA,MASTERCARD
+    VISA,MASTERCARD,AMERICAN_EXPRESS
 }
