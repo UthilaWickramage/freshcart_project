@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Codescandy" name="author">
-    <title>FreshCart | Auth</title>
+    <title>${App.getString("app_name")} | Auth</title>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="${BASE_URL}assets/images/favicon/favicon.ico">
 
@@ -44,7 +44,7 @@
 <!-- footer -->
 
 <!-- Javascript-->
-<script src="fetchScript.js"></script>
+<script src="${BASE_URL}assets/js/fetchScript.js"></script>
 <!-- Libs JS -->
 <script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -8,7 +8,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import javax.swing.text.View;
 
 @IsVendor
-@Path("/vendor_dashboard")
+@Path("/vendor/dashboard")
 public class DashBoardController {
     @GET
     public Viewable get(){

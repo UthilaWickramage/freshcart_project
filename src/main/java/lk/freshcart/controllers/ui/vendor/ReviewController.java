@@ -13,11 +13,11 @@ import lk.freshcart.entity.Reviews;
 import lk.freshcart.services.ProductService;
 import org.glassfish.jersey.server.mvc.Viewable;
 @IsVendor
-@Path("/")
+@Path("/vendor")
 public class ReviewController {
     @Inject
     ProductService productService;
-    @Path("vendor_reviews")
+    @Path("reviews")
     @GET
     public Viewable get(){
         return new Viewable("/backend/vendor/reviews");

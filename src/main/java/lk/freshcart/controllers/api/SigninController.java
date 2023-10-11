@@ -22,7 +22,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 
 import java.util.Date;
 
-@IsAuthorized
+
 @Singleton
 @Path("/signin")
 public class SigninController {
@@ -58,11 +58,11 @@ public class SigninController {
                         AuthResponseDTO authResponseDTO = new AuthResponseDTO(accessToken, refreshToken, String.valueOf(expiredDateFromToken.getTime()));
                         HttpSession session = request.getSession();
                         if (userByEmail.getUserType() == UserType.CUSTOMER) {
-                            session.setAttribute("user", userByEmail.getId());
+                            session.setAttribute("user", userByEmail);
                         } else if (userByEmail.getUserType() == UserType.VENDOR) {
-                            session.setAttribute("vendor", userByEmail.getId());
+                            session.setAttribute("vendor", userByEmail);
                         } else if (userByEmail.getUserType() == UserType.ADMIN) {
-                            session.setAttribute("admin", userByEmail.getId());
+                            session.setAttribute("admin", userByEmail);
                         }
                         return Response.status(Response.Status.OK).entity(authResponseDTO).build();
                     } else {

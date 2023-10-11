@@ -9,7 +9,7 @@
             <ul class="navbar-nav flex-column" id="sideNavbar">
 
                 <li class="nav-item ">
-                    <a class="nav-link  active " href="${BASE_URL}admin_dashboard">
+                    <a class="nav-link  active " href="${BASE_URL}admin/dashboard">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-house"></i></span>
                             <span class="nav-link-text">Dashboard</span>
@@ -19,7 +19,7 @@
                 <li class="nav-item mt-6 mb-3">
                     <span class="nav-label">Store Managements</span></li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}admin_products">
+                    <a class="nav-link " href="${BASE_URL}admin/products">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-cart"></i></span>
                             <span class="nav-link-text">Products</span>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}admin_categories">
+                    <a class="nav-link " href="${BASE_URL}admin/categories">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-list-task"></i></span>
                             <span class="nav-link-text">Categories</span>
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${BASE_URL}admin_orders">
+                    <a class="nav-link" href="${BASE_URL}admin/orders">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-bag"></i></span>
                             <span class="nav-link-text">Orders</span>
@@ -45,7 +45,7 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}admin_vendors">
+                    <a class="nav-link " href="${BASE_URL}admin/vendors">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-shop"></i></span>
                             <span class="nav-link-text">Sellers / Vendors</span>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}admin_customers">
+                    <a class="nav-link " href="${BASE_URL}admin/customers">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-people"></i></span>
                             <span class="nav-link-text">Customers</span>
@@ -61,10 +61,18 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}admin_reviews">
+                    <a class="nav-link " href="${BASE_URL}admin/reviews">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-star"></i></span>
                             <span class="nav-link-text">Reviews</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="${BASE_URL}admin/keywords">
+                        <div class="d-flex align-items-center">
+                            <span class="nav-link-icon"> <i class="bi bi-star"></i></span>
+                            <span class="nav-link-text">Keywords</span>
                         </div>
                     </a>
                 </li>

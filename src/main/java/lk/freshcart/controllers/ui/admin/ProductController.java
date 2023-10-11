@@ -12,12 +12,12 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.List;
 
 @IsAdmin
-@Path("/")
+@Path("/admin")
 public class ProductController {
     @Inject
     ProductService productService;
 
-    @Path("admin_products")
+    @Path("/products")
     @GET
     public Viewable viewAll() {
         List<Product> allproducts = productService.getAllproducts();

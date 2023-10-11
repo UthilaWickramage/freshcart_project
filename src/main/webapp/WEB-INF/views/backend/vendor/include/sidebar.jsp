@@ -9,7 +9,7 @@
             <ul class="navbar-nav flex-column" id="sideNavbar">
 
                 <li class="nav-item ">
-                    <a class="nav-link  active " href="${BASE_URL}vendor_dashboard">
+                    <a class="nav-link  active " href="${BASE_URL}vendor/dashboard">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-house"></i></span>
                             <span class="nav-link-text">Dashboard</span>
@@ -19,7 +19,7 @@
                 <li class="nav-item mt-6 mb-3">
                     <span class="nav-label">Store Managements</span></li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}vendor_products">
+                    <a class="nav-link " href="${BASE_URL}vendor/products">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-cart"></i></span>
                             <span class="nav-link-text">Products</span>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}vendor_categories">
+                    <a class="nav-link " href="${BASE_URL}vendor/categories">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-list-task"></i></span>
                             <span class="nav-link-text">Categories</span>
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${BASE_URL}vendor_orders">
+                    <a class="nav-link" href="${BASE_URL}vendor/orders">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-bag"></i></span>
                             <span class="nav-link-text">Orders</span>
@@ -44,7 +44,7 @@
 
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}vendor_reviews">
+                    <a class="nav-link " href="${BASE_URL}vendor/reviews">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-star"></i></span>
                             <span class="nav-link-text">Reviews</span>
@@ -70,7 +70,7 @@
         <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
             <ul class="navbar-nav flex-column">
                 <li class="nav-item ">
-                    <a class="nav-link  active " href="${BASE_URL}vendor_dashboard">
+                    <a class="nav-link  active " href="${BASE_URL}vendor/dashboard">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-house"></i></span>
                             <span>Dashboard</span>
@@ -80,7 +80,7 @@
                 <li class="nav-item mt-6 mb-3">
                     <span class="nav-label">Store Managements</span></li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}vendor_products">
+                    <a class="nav-link " href="${BASE_URL}vendor/products">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-cart"></i></span>
                             <span class="nav-link-text">Products</span>
@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}vendor_categories">
+                    <a class="nav-link " href="${BASE_URL}vendor/categories">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-list-task"></i></span>
                             <span class="nav-link-text">Categories</span>
@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="${BASE_URL}vendor_orders">
+                    <a class="nav-link " href="${BASE_URL}vendor/orders">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-bag"></i></span>
                             <span class="nav-link-text">Orders</span>
@@ -106,7 +106,7 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link " href="${BASE_URL}vendor_reviews">
+                    <a class="nav-link " href="${BASE_URL}vendor/reviews">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon"> <i class="bi bi-star"></i></span>
                             <span class="nav-link-text">Reviews</span>

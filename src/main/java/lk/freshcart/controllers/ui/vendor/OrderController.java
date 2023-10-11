@@ -5,16 +5,16 @@ import jakarta.ws.rs.Path;
 import lk.freshcart.annotations.IsVendor;
 import org.glassfish.jersey.server.mvc.Viewable;
 @IsVendor
-@Path("/")
+@Path("/vendor")
 public class OrderController {
-    @Path("vendor_orders")
+    @Path("orders")
     @GET
     public Viewable get(){
         return new Viewable("/backend/vendor/order_list");
     }
 
 
-    @Path("vendor_order")
+    @Path("order")
     @GET
     public Viewable Vendor_order(){
         return new Viewable("/backend/vendor/order_single");

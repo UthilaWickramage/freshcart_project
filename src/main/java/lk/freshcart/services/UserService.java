@@ -18,7 +18,7 @@ public class UserService {
         return session.get(User.class, id);
     }
 
-    public void saveMobile(Long id,String mobile){
+    public void saveMobile(Long id, String mobile) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         User user = session.get(User.class, id);
@@ -63,24 +63,34 @@ public class UserService {
         session.close();
     }
 
-    public void updateStatus(String code){
+    public void saveAddress(Long id, String address, String city, String post) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        try{
-           Optional<User> op= session.createQuery("select u from User u where u.verification_code=:verification_code").setParameter("verification_code",code).uniqueResultOptional();
+        User user = session.get(User.class, id);
+        user.setAddress(address);
+        user.setCity(city);
+        user.setPost_code(post);
+        transaction.commit();
+    }
 
-       if(op.isPresent()){
-           User user = op.get();
-           user.setActive(true);
-           user.setEmail_verified_at(new Timestamp(System.currentTimeMillis()).toString());
-       }
-        }catch (Exception e){
+    public void updateStatus(String code) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Optional<User> op = session.createQuery("select u from User u where u.verification_code=:verification_code").setParameter("verification_code", code).uniqueResultOptional();
+
+            if (op.isPresent()) {
+                User user = op.get();
+                user.setActive(true);
+                user.setEmail_verified_at(new Timestamp(System.currentTimeMillis()).toString());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         transaction.commit();
     }
 
-    public void changePassword(Long id,String password){
+    public void changePassword(Long id, String password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         User user = session.get(User.class, id);

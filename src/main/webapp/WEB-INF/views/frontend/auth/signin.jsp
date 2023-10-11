@@ -146,9 +146,9 @@
                         password: password
                     })
                 }).then(async response => {
-                    if(!response.ok){
-                        alert(response.text())
-                    }else{
+                    if (!response.ok) {
+                        await alert(response.text())
+                    } else {
                         return response.json()
                     }
 

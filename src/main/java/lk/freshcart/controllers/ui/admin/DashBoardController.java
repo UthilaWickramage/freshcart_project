@@ -6,9 +6,9 @@ import lk.freshcart.annotations.IsAdmin;
 import org.glassfish.jersey.server.mvc.Viewable;
 
 @IsAdmin
-@Path("/")
+@Path("/admin")
 public class DashBoardController {
-    @Path("admin_dashboard")
+    @Path("/dashboard")
     @GET
     public Viewable get(){
         return new Viewable("/backend/admin/dashboard");

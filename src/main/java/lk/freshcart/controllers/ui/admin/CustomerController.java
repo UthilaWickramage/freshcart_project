@@ -11,7 +11,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.List;
 
 @IsAdmin
-@Path("/admin_customers")
+@Path("/admin/customers")
 public class CustomerController {
     @Inject
     UserService userService;

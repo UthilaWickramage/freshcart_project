@@ -186,7 +186,7 @@
         <script type="text/javascript">
             document.getElementsByClassName('create-product').item(0).addEventListener('click', () => {
 
-                let form = new FormData()
+                let form = new URLSearchParams()
 
                 let file = document.getElementById('file-input').files[0];
                 let title = document.getElementById('name').value;
@@ -216,11 +216,16 @@
                 form.append("qty",qty);
 
 
-                fetch('${BASE_URL}add-product', {
+
+                let options = {
                     method: 'post',
-                    headers: {},
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
                     body: form,
-                }).then(response => response.text())
+                }
+                    secureFetch('${BASE_URL}vendor/add-product',options)
+                    .then(response => response.text())
                     .then(text => console.log(text));
 
             });

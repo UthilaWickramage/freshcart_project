@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @IsVendor
-@Path("/vendor_categories")
+@Path("/vendor/categories")
 public class CategoryController {
     @Inject
     CategoryService categoryService;

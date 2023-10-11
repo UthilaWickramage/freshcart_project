@@ -1,10 +1,8 @@
 package lk.freshcart.controllers.api;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.entity.Category;
@@ -26,12 +24,12 @@ import java.util.List;
 import java.util.Set;
 
 @IsAuthorized
-@Path("/")
+@Path("/vendor")
 public class ProductController {
     @Inject
     ProductService productService;
-
-    @Path("add-product")
+@Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Path("/add-product")
     @POST
     public Response save(@FormDataParam("file") InputStream in,
                          @FormDataParam("file") FormDataContentDisposition info,

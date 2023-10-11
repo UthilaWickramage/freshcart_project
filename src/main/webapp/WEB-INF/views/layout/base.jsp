@@ -2,14 +2,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Codescandy" name="author">
-    <title>FreshCart </title>
+    <title>${App.getString("app_name")} </title>
 
     <link href="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
 
@@ -435,8 +433,13 @@
 
 <jsp:include page="../frontend/include/footer.jsp"/>
 
+<layout:block name="script">
+
+</layout:block>
+
+
 <!-- Javascript-->
-<script src="fetchScript.js"></script>
+<script src="${BASE_URL}assets/js/fetchScript.js"></script>
 <script src="${BASE_URL}assets/libs/rater-js/index.js"></script>
 <script src="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 <script src="${BASE_URL}assets/js/request-interceptor.js" type="text/javascript"></script>
@@ -457,9 +460,6 @@
 <script src="${BASE_URL}assets/js/vendors/increment-value.js"></script>
 
 
-<layout:block name="script">
-
-</layout:block>
 
 </body>
 

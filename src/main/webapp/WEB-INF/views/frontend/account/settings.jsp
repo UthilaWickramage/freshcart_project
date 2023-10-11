@@ -103,31 +103,35 @@
         <script>
             document.getElementById('save-btn').addEventListener('click', () => {
                 let mobile = document.getElementById("mobile").value;
-                let formData = new FormData();
+                let formData = new URLSearchParams();
                 formData.append("mobile", mobile);
-                fetch('${BASE_URL}account-settings', {
+
+                let options = {
                     method: 'put',
                     headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: formData,
-                }).then(response => response.text()).then(text => alert(text))
+                }
+                    secureFetch('${BASE_URL}account-settings',options).then(response => response.text()).then(text => alert(text))
 
 
             })
 
             document.getElementById('save-password').addEventListener('click', () => {
 
-                let form = new FormData()
+                let form = new URLSearchParams()
                 form.append("new", document.getElementById('new').value)
                 form.append("current", document.getElementById('current').value)
-                fetch('${BASE_URL}account-settings',{
-                    method:'post',
-                    headers:{
-                        'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
-                    },
-                    body:form,
-                }).then(response=>response.text()).then(text=>alert(text))
+                    let options={
+                        method:'post',
+                        headers:{
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body:form,
+                    }
+                    secureFetch('${BASE_URL}account-settings',options)
+                    .then(response=>response.text()).then(text=>alert(text))
             })
         </script>
     </layout:put>

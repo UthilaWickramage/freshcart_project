@@ -66,7 +66,7 @@
                                     <div class="mb-3 col-lg-12 ">
                                         <label class="form-label">Descriptions</label>
 
-                                        <div class="py-8 d-grid" >
+                                        <div class="py-8 d-grid">
                                             <textarea class="form-control" id="editor" cols="10"></textarea>
                                         </div>
                                     </div>
@@ -108,21 +108,24 @@
                 let slug = document.getElementById('slug').value;
                 let status = document.getElementById('status').value;
 
-                let form = new FormData();
-                form.append("file",file);
-                form.append("title",title);
-                form.append("desc",desc);
-                form.append("slug",slug);
-                form.append("status",status)
+                let form = new URLSearchParams();
+                form.append("file", file);
+                form.append("title", title);
+                form.append("desc", desc);
+                form.append("slug", slug);
+                form.append("status", status)
 
+                let options = {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: form,
+                }
 
-
-                fetch('${BASE_URL}add_category', {
-                  method: 'post',
-
-                  body: form,
-                }).then(response => response.text())
-                        .then(text => alert(text));
+                secureFetch('${BASE_URL}add_category', options)
+                    .then(response => response.text())
+                    .then(text => alert(text));
             });
         </script>
     </layout:put>

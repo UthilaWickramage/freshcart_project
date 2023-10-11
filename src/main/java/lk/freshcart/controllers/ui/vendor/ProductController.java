@@ -15,11 +15,11 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.List;
 import java.util.Set;
 @IsVendor
-@Path("/")
+@Path("/vendor")
 public class ProductController {
     @Inject
     ProductService productService;
-    @Path("add-product")
+    @Path("/add-product")
     @GET
     public Viewable view() {
         CategoryService categoryService = new CategoryService();
@@ -27,7 +27,7 @@ public class ProductController {
         return new Viewable("/backend/vendor/addProduct", allCategories);
     }
 
-    @Path("vendor_products")
+    @Path("/products")
     @GET
     public Viewable get() {
         List<Product> allproducts = productService.getAllproducts();

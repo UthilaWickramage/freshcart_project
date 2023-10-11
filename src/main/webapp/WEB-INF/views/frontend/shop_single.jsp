@@ -580,8 +580,9 @@
                 let rating = document.getElementById("rating").value;
                 let title = document.getElementById("title").value;
                 let desc = document.getElementById("desc").value;
-                console.log(product_id)
-                fetch('${BASE_URL}reviews', {
+
+
+                let options = {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json'
@@ -592,16 +593,19 @@
                         title: title,
                         desc: desc,
                     })
-                }).then(response => response.text())
+                }
+                    secureFetch('${BASE_URL}reviews',options)
+                    .then(response => response.text())
                     .then(text => alert(text));
             }
 
             function addToCart(id) {
                 let qty = document.getElementById("qty").value;
-                fetch('${BASE_URL}cart', {
+
+                let options ={
                     method: 'post',
                     headers: {
-                        'Authorization':'Bearer '+localStorage.getItem("accessToken"),
+
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -609,10 +613,11 @@
                         qty: qty,
 
                     })
-                }).then(response => response.text())
-                    .then((text)=>{
-                        if(text=="success"){
-                            window.location.reload();
+                }
+                secureFetch("${BASE_URL}cart",options).then(response => response.text())
+                    .then(text=>{
+                        if(text=="Success"){
+                            window.location.href="${BASE_URL}cart";
                         }else {
                             alert(text)
                         }

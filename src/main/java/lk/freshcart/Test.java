@@ -1,5 +1,6 @@
 package lk.freshcart;
 
+import lk.freshcart.entity.AppSetting;
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
 import lk.freshcart.entity.User;
@@ -12,6 +13,11 @@ import java.util.Set;
 public class Test {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-
+        AppSetting app = new AppSetting();
+        app.setName("app_name");
+        app.setValue("FreshCart");
+        Transaction transaction = session.beginTransaction();
+        session.persist(app);
+        transaction.commit();
     }
 }

@@ -1,10 +1,8 @@
 package lk.freshcart.controllers.api;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.HeaderParam;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.entity.CardType;
@@ -24,6 +22,7 @@ public class CardController {
     AccountService accountService = new AccountService();
     @POST
     @Path("account-payment-methods")
+    @Produces(MediaType.APPLICATION_FORM_URLENCODED)
     public Response save(@FormParam("name") String name,
                          @FormParam("number")String number,
                          @FormParam("cvv") String cvv,
@@ -31,8 +30,22 @@ public class CardController {
                          @FormParam("year") String year,
                          @FormParam("type") String type,
                          @HeaderParam("Authorization")String token){
-        String split = token.split(" ")[1];
-        User user = userService.getUserByEmailAndPassword(tokenUtil.getEmailFromToken(split), tokenUtil.getPasswordFromToken(split));
+        System.out.println(cvv);
+        System.out.println(month);
+        System.out.println(number);
+        System.out.println(name);
+        System.out.println(year);
+        System.out.println(type);
+        System.out.println(token);
+        User user;
+        if(token!=null){
+            String split = token.split(" ")[1];
+             user= userService.getUserByEmailAndPassword(tokenUtil.getEmailFromToken(split), tokenUtil.getPasswordFromToken(split));
+
+        }else{
+            System.out.println("its null");
+            user = null;
+        }
         if (user == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("No User").build();
 

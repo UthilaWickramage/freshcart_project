@@ -11,7 +11,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.List;
 
 @IsAdmin
-@Path("/admin_vendors")
+@Path("/admin/vendors")
 public class VendorController {
     @Inject
     UserService userService;

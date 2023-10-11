@@ -28,8 +28,10 @@ public class CartController {
 
 
     @PUT
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response remove(@FormParam("id") Long id) {
         try {
+            System.out.println(id);
             cartService.removeCartItem(id);
             return Response.status(Response.Status.OK).entity("Product Removed successfully").build();
         } catch (Exception e) {

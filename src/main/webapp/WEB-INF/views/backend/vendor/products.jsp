@@ -16,7 +16,7 @@
               </div>
               <!-- button -->
               <div>
-                <a href="${BASE_URL}add-product" class="btn btn-primary">Add Product</a>
+                <a href="${BASE_URL}vendor/add-product" class="btn btn-primary">Add Product</a>
               </div>
             </div>
           </div>

@@ -15,12 +15,12 @@ import lk.freshcart.services.ProductService;
 import org.glassfish.jersey.server.mvc.Viewable;
 
 @IsAdmin
-@Path("/")
+@Path("/admin")
 public class ReviewController {
     @Inject
     ProductService productService;
 
-    @Path("admin_reviews")
+    @Path("/reviews")
     @GET
     public Viewable view(){
         return new Viewable("/backend/admin/reviews");

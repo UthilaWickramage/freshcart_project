@@ -8,7 +8,7 @@
         <property name="hibernate.connection.password">MSI2023w10</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.format_sql">false</property>
         <mapping class="lk.freshcart.entity.User"/>
         <mapping class="lk.freshcart.entity.Product"/>
         <mapping class="lk.freshcart.entity.Category"/>
@@ -19,6 +19,6 @@
         <mapping class="lk.freshcart.entity.OrderItem"/>
         <mapping class="lk.freshcart.entity.CartItem"/>
         <mapping class="lk.freshcart.entity.WishListItem"/>
-
+        <mapping class="lk.freshcart.entity.AppSetting"/>
     </session-factory>
 </hibernate-configuration>

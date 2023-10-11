@@ -20,20 +20,20 @@ import java.io.InputStream;
 import java.util.List;
 
 @IsAdmin
-@Path("/")
+@Path("/admin")
 public class CategoryController {
     @Inject
     CategoryService categoryService;
 
 
-    @Path("admin_categories")
+    @Path("/categories")
     @GET
     public Viewable getAll() {
         List<Category> allCategories = categoryService.getAllCategories();
         return new Viewable("/backend/admin/category", allCategories);
     }
 
-    @Path("add_category")
+    @Path("/add-category")
     @GET
     public Viewable view() {
         return new Viewable("/backend/admin/addCategory");

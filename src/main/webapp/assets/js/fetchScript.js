@@ -15,8 +15,10 @@ function secureFetch(url, options = {}) {
     if(token){
         options.headers={
             ...options.headers,
-            Authorization: 'Bearer '+token,
+            'Authorization': 'Bearer '+token,
+
         }
+
     }else{
         console.log("Token Unavailable");
         window.location.href = `${BASE_URL}signin`

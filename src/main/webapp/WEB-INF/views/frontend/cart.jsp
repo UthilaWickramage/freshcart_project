@@ -176,14 +176,27 @@
     <layout:put block="script">
         <script>
             function removeItem(id){
-                let formData = new FormData();
+                let formData = new URLSearchParams();
                 formData.append("id",id);
-                alert(id)
-                fetch("${BASE_URL}cart",{
+                let options = {
                     method:'put',
+                    headers:{
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
                     body:formData
-                }).then(response=>response.text())
-                    .then(text=>alert(text))
+                }
+
+                    secureFetch("${BASE_URL}cart",options)
+                        .then(response=>{
+                            if(response.ok){
+                                alert("Product removed successfully")
+                                window.location.href="${BASE_URL}cart"
+                            }
+                            response.text()
+                        })
+                    .then(text=> {
+                    console.log(text)
+                    })
 
             }
         </script>

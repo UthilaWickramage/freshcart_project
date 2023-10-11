@@ -3,6 +3,7 @@ package lk.freshcart.controllers.api;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lk.freshcart.annotations.IsAuthorized;
 import lk.freshcart.entity.CartItem;
@@ -70,4 +71,32 @@ public class AccountController {
 
         }
     }
+
+    @PUT
+    @Path("account-addresses")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response saveAddress(@FormParam ("address") String address,@FormParam("city")String city,@FormParam("post_code")String post_code,@HeaderParam("Authorization") String token){
+        String split = token.split(" ")[1];
+        User user = userService.getUserByEmailAndPassword(tokenUtil.getEmailFromToken(split), tokenUtil.getPasswordFromToken(split));
+        if (user == null) {
+            return Response.status(Response.Status.FORBIDDEN).entity("No User").build();
+
+        }else{
+            if(address.isEmpty()){
+                return Response.status(Response.Status.FORBIDDEN).entity("enter address").build();
+
+            }else if(city.isEmpty()){
+                return Response.status(Response.Status.FORBIDDEN).entity("enter city").build();
+
+            }else if(post_code.isEmpty()){
+                return Response.status(Response.Status.FORBIDDEN).entity("enter post code").build();
+
+            }else{
+                userService.saveAddress(user.getId(),address,city,post_code);
+                return Response.status(Response.Status.OK).entity("Address update successflly").build();
+
+            }
+        }
+    }
+
 }

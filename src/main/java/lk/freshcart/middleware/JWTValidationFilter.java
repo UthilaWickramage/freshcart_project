@@ -6,6 +6,7 @@ import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.PreMatching;
@@ -27,7 +28,8 @@ import java.util.Map;
 //@PreMatching
 public class JWTValidationFilter implements ContainerRequestFilter {
     //dependency injection
-
+    @Context
+    private HttpServletRequest servletRequest;
     @Inject
     private JWTTokenUtil tokenUtil;
     @Inject
@@ -35,13 +37,8 @@ public class JWTValidationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-        //get the request path
-        String path = containerRequestContext.getUriInfo().getPath();
 
-        if (path.equals("signin")|| path.equals("refresh-token")) {
-            //returns without going further for the above paths
-            return;
-        }
+
 
         //check if the headers contain authentication
         if (containerRequestContext.getHeaders().getFirst("Authorization") == null) {
@@ -50,7 +47,7 @@ public class JWTValidationFilter implements ContainerRequestFilter {
         } else {
 
             String tokenFromAuthorization = containerRequestContext.getHeaders().getFirst("Authorization").split(" ")[1];
-            System.out.println(tokenFromAuthorization);
+
             try {
 
                 User user = userService.getUserByEmailAndPassword(tokenUtil.getEmailFromToken(tokenFromAuthorization),tokenUtil.getPasswordFromToken(tokenFromAuthorization));
@@ -60,6 +57,9 @@ public class JWTValidationFilter implements ContainerRequestFilter {
                 if (!tokenUtil.validateToken(tokenFromAuthorization, user)) {
                     //if token is not a valid one. unauthorized response
                     containerRequestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+                }else{
+                    HttpSession session = servletRequest.getSession();
+                    session.setAttribute("user",user);
                 }
             } catch (JWTExpiredException ex) {
                 containerRequestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("OH NO! TOKEN EXPIRED!").build());
