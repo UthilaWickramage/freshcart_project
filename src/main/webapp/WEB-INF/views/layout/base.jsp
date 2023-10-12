@@ -24,7 +24,6 @@
     <link href="${BASE_URL}assets/libs/feather-webfont/dist/feather-icons.css" rel="stylesheet">
     <link href="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
-
     <!-- Theme CSS -->
     <link rel="stylesheet" href="${BASE_URL}assets/css/theme.min.css">
     <!-- Google tag (gtag.js) -->
@@ -447,6 +446,7 @@
 <script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="${BASE_URL}assets/js/spartan-multi-image-picker.js"/>
 
 <!-- Theme JS -->
 <script src="${BASE_URL}assets/js/theme.min.js"></script>

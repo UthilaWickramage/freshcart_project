@@ -29,8 +29,10 @@
                                     <div class="col-lg-8 col-md-10 col-12 mb-2">
                                         <!-- form -->
                                         <div class="d-flex">
-                                            <input class="form-control me-5" type="text" id="name" placeholder="Enter Name">
-                                            <input class="form-control me-5" type="text" id="value" placeholder="Enter Value">
+                                            <input class="form-control me-5" type="text" id="name"
+                                                   placeholder="Enter Name">
+                                            <input class="form-control me-5" type="text" id="value"
+                                                   placeholder="Enter Value">
                                             <a href="#" class="btn btn-primary save-btn">Save </a>
                                         </div>
                                     </div>
@@ -47,7 +49,8 @@
                                         <tr>
                                             <th>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                           id="checkAll">
                                                     <label class="form-check-label" for="checkAll">
 
                                                     </label>
@@ -76,7 +79,6 @@
 
                                                 <td>${items.name}</td>
                                                 <td>${items.value}</td>
-
 
 
                                                 <td>
@@ -125,30 +127,29 @@
     </layout:put>
     <layout:put block="script">
         <script>
-            document.getElementsByClassName('save-btn').item(0).addEventListener('click',()=>{
+            document.getElementsByClassName('save-btn').item(0).addEventListener('click', () => {
 
                 let name = document.getElementById("name").value;
                 let value = document.getElementById("value").value;
 
                 let formData = new URLSearchParams();
-                formData.append("name",name);
-                formData.append("value",value);
-                secureFetch('${BASE_URL}admin/keywords',{
-                    method:'post',
-                    headers:{
-                        'Content-Type':'application/x-www-form-urlencoded'
+                formData.append("name", name);
+                formData.append("value", value);
+                secureFetch('${BASE_URL}admin/keywords', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body:formData
+                    body: formData
                 }).then(response => {
-if(!response.ok){
-    alert(response.json())
-     }else{
-    window.location.href='${BASE_URL}admin/keywords'
-    }
+                    if (!response.ok) {
+                        alert(response.json())
+                    } else {
+                        window.location.href = '${BASE_URL}admin/keywords'
+                    }
 
-
-                }).then(json=>{
-                alert(json.text())
+                }).then(json => {
+                    alert(json.text())
                 })
             })
         </script>

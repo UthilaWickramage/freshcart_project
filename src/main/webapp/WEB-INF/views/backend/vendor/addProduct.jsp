@@ -69,40 +69,19 @@
                                             <option value="Litres">Litres</option>
                                         </select>
                                     </div>
-                                    <div>
-                                        <div class="mb-3 col-lg-12 mt-5">
-                                            <!-- heading -->
-                                            <h4 class="mb-3 h5">Product Images</h4>
 
-                                            <!-- input -->
-                                            <div class="mb-4 d-flex">
-                                                <div class="position-relative">
-                                                    <img class="image  icon-shape icon-xxxl bg-light rounded-4"
-                                                         src="${BASE_URL}assets/images/icons/bakery.svg" alt="Image">
-
-                                                    <div class="file-upload position-absolute end-0 top-0 mt-n2 me-n1">
-                                                        <input type="file" class="file-input" id="file-input">
-                                                        <span class="icon-shape icon-sm rounded-circle bg-white">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                     fill="currentColor" class="bi bi-pencil-fill text-muted"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                                  </svg>
-                                                </span>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!-- input -->
                                     <div class="mb-3 col-lg-12 mt-5">
                                         <h4 class="mb-3 h5">Product Descriptions</h4>
                                         <div class="py-8 d-grid">
                                             <textarea class="form-control" id="editor" cols="10"></textarea>
                                         </div>
+                                        <h4 class="mb-5 h5">Category Image</h4>
+                                        <div class="card"  id="image-dev">
+                                            <input type="file" multiple class="" style="display:none" id="customFiles">
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -168,6 +147,9 @@
 
                             </div>
                         </div>
+
+
+
                         <!-- card -->
 
                         <!-- button -->
@@ -184,51 +166,74 @@
     </layout:put>
     <layout:put block="script">
         <script type="text/javascript">
+            $('#image-dev').spartanMultiImagePicker({
+                fieldName: 'files[]',
+                maxCount: 6,
+            })
             document.getElementsByClassName('create-product').item(0).addEventListener('click', () => {
 
-                let form = new URLSearchParams()
-
-                let file = document.getElementById('file-input').files[0];
                 let title = document.getElementById('name').value;
                 let desc = document.getElementById('editor').value;
                 let brand = document.getElementById('brand').value;
-                let category = document.getElementById('category').value;
+                let id = document.getElementById('category').value;
                 let weight = document.getElementById('weight').value;
                 let units = document.getElementById('units').value;
                 let qty = document.getElementById('qty').value;
                 let r_price = document.getElementById('r-price').value;
                 let s_price = document.getElementById('s-price').value;
                 let ship_price = document.getElementById('ship-price').value;
-                let status = document.getElementById('status').value;
-
-
-                form.append("title", title);
-                form.append("desc", desc);
-                form.append("category", category);
-                form.append("weight", weight);
-                form.append("units", units);
-                form.append("r_price", r_price);
-                form.append("s_price", s_price);
-                form.append("brand", brand);
-                form.append("file", file)
-                form.append("status", status)
-                form.append("ship_price",ship_price);
-                form.append("qty",qty);
-
-
 
                 let options = {
                     method: 'post',
                     headers: {
-                        'Content-Type': 'multipart/form-data',
+                        'Content-Type': 'application/json',
                     },
-                    body: form,
+                    body: JSON.stringify({
+                        title:title,
+                        desc:desc,
+                        brand:brand,
+                        id:id,
+                        weight:weight,
+                        units:units,
+                        qty:qty,
+                        r_price:r_price,
+                        s_price:s_price,
+                        ship_price:ship_price,
+                    })
                 }
-                    secureFetch('${BASE_URL}vendor/add-product',options)
-                    .then(response => response.text())
-                    .then(text => console.log(text));
+                    secureFetch('${BASE_URL}vendor/api/add_product',options)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            uploadImage(data.pid)
+                        });
 
             });
+
+            function uploadImage(id){
+                let formData = new FormData();
+                let inputs = document.querySelectorAll('input[type=file]');
+                inputs.forEach((input, index) => {
+                    if (index !== 0 && index !== inputs.length - 1) {
+                        let file = input.files[0];
+                        formData.append("files[]", file);
+                    }
+                })
+                alert(inputs.length)
+                alert(id)
+                secureFetch('${BASE_URL}vendor/api/add_product/'+id+'/upload-image',{
+                    method:'post',
+                    body:formData,
+                }).then( response =>{
+                    if(!response.ok){
+                        alert(response.text())
+                    }
+                    response.json()
+                }).then(data=>{
+                    console.log(data)
+                    <%--window.location.href = '${BASE_URL}admin/categories';--%>
+                })
+            }
 
 
         </script>

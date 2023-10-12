@@ -17,7 +17,7 @@
               </div>
               <!-- button -->
               <div>
-                <a href="${BASE_URL}add_category" class="btn btn-primary">Add Category</a>
+                <a href="${BASE_URL}admin/add-category" class="btn btn-primary">Add Category</a>
               </div>
             </div>
           </div>

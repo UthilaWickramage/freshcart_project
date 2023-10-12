@@ -11,6 +11,12 @@ import java.util.List;
 
 public class CategoryService {
     //give category by the title
+    public Category getCategoryById(Long id) {
+
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            return session.get(Category.class,id);
+
+    }
     public Category getCategoryByTitle(String title) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -42,6 +48,13 @@ public class CategoryService {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(category);
+        transaction.commit();
+        session.close();
+    }
+    public void update(Category category) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(category);
         transaction.commit();
         session.close();
     }

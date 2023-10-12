@@ -2,7 +2,9 @@ package lk.freshcart.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,12 +25,18 @@ public class Product extends BaseEntity {
     private Double sale_price;
     private Double shipping_price;
 
-    public Set<ProductImage> getProductImage() {
-        return productImage;
+    @Column(name = "images")
+    @CollectionTable(name = "product_image",joinColumns = @JoinColumn(name = "product_id"))
+    //seperate table will be created
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> images;
+
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setProductImage(Set<ProductImage> productImage) {
-        this.productImage = productImage;
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,8 +55,7 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
-    private Set<ProductImage> productImage = new HashSet<>();
+
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<Reviews> reviews = new HashSet<>();
@@ -202,6 +209,4 @@ public class Product extends BaseEntity {
     public void setShipping_price(Double shipping_price) {
         this.shipping_price = shipping_price;
     }
-
-
 }

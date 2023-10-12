@@ -2,7 +2,6 @@ package lk.freshcart.services;
 
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
-import lk.freshcart.entity.ProductImage;
 import lk.freshcart.entity.Reviews;
 import lk.freshcart.util.HibernateUtil;
 import org.hibernate.Session;
@@ -29,15 +28,20 @@ return null;
         }
     }
 
-    public void saveProduct(ProductImage productImage, Product product, String category_id) {
+    public void saveProduct(Product product) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Category category = session.get(Category.class, category_id);
-        product.setCategoryId(category);
-        productImage.setProductId(product);
-        session.persist(productImage);
         session.persist(product);
         transaction.commit();
+        session.close();
+    }
+
+    public void update(Product product) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(product);
+        transaction.commit();
+        session.close();
     }
 
     public void saveReview(Reviews reviews,String id){

@@ -59,11 +59,7 @@
             <artifactId>jersey-mvc-jsp</artifactId>
             <version>3.1.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-multipart</artifactId>
-            <version>3.1.2</version>
-        </dependency>
+
 <!--        works as a provider for hibernate validation for their annotations. annotations are useless without this dependency-->
         <dependency>
             <groupId>org.glassfish.jersey.ext</groupId>
@@ -75,7 +71,16 @@
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>3.1.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>

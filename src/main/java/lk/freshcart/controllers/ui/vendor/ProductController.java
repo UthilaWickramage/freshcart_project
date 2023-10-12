@@ -7,7 +7,6 @@ import jakarta.ws.rs.Path;
 import lk.freshcart.annotations.IsVendor;
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
-import lk.freshcart.entity.ProductImage;
 import lk.freshcart.services.CategoryService;
 import lk.freshcart.services.ProductService;
 import org.glassfish.jersey.server.mvc.Viewable;
@@ -33,10 +32,10 @@ public class ProductController {
         List<Product> allproducts = productService.getAllproducts();
         for(Product product:allproducts){
             System.out.println(product.getTitle());
-            Set<ProductImage> productImage = product.getProductImage();
-            for(ProductImage i :productImage){
-                System.out.println(i.getUrl());
-            }
+//            Set<ProductImage> productImage = product.getProductImage();
+//            for(ProductImage i :productImage){
+//                System.out.println(i.getUrl());
+//            }
         }
         return new Viewable("/backend/vendor/products",allproducts);
     }
