@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- navigation -->
 <header>
     <div class="container">
@@ -41,7 +42,15 @@
 
                 <a href="#" class="text-reset">Support</a>
                 <a href="#" class="mx-md-8 ms-4 text-reset">Delivery</a>
-                <a href="#" class="text-reset d-none d-md-block">Warranty</a>
+                <c:choose>
+                    <c:when test="${user ne null}">
+                        <a href=""  class="text-reset d-none d-md-block">WishList</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#" class="text-reset d-none d-md-block">Warranty</a>
+                    </c:otherwise>
+                </c:choose>
+
                 <!-- Button -->
 
 
@@ -233,9 +242,6 @@
                             </c:choose>
                         </c:otherwise>
                     </c:choose>
-
-
-
 
                 </div>
             </div>

@@ -12,10 +12,14 @@ public class Order extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double total;
-    private Integer status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User userId;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "order_status")
+    private OrderStatus orderStatus = OrderStatus.PENDING;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orderId")
     private Set<OrderItem> orderItems = new HashSet<>();
@@ -25,6 +29,14 @@ public class Order extends BaseEntity{
 
     public Set<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public void setOrderItems(Set<OrderItem> orderItems) {
@@ -47,13 +59,6 @@ public class Order extends BaseEntity{
         this.total = total;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 
     public User getUserId() {
         return userId;

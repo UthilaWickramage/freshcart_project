@@ -102,7 +102,7 @@ placeholder="enter address"
       },
       body: formData,
     }
-    secureFetch('${BASE_URL}account-addresses',options).then(response => response.text()).then(text => alert(text))
+    secureFetch('${BASE_URL}api/account-addresses',options).then(response => response.text()).then(text => alert(text))
 
 
   })

@@ -231,7 +231,7 @@
                     },
                     body: formData
                 }
-                secureFetch('${BASE_URL}account-payment-methods', options)
+                secureFetch('${BASE_URL}api/account-payment-methods', options)
                     .then(response => response.text()).then(text => alert(text))
 
             })

@@ -130,7 +130,7 @@
                         },
                         body:form,
                     }
-                    secureFetch('${BASE_URL}account-settings',options)
+                    secureFetch('${BASE_URL}api/account-settings',options)
                     .then(response=>response.text()).then(text=>alert(text))
             })
         </script>

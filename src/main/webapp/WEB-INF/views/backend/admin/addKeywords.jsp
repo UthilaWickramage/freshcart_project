@@ -26,13 +26,16 @@
                         <div class="card card-lg">
                             <div class="px-6 py-6 ">
                                 <div class="row">
-                                    <div class="col-lg-8 col-md-10 col-12 mb-2">
+                                    <div class="col-lg-12 col-md-10 col-12 mb-2">
                                         <!-- form -->
                                         <div class="d-flex">
                                             <input class="form-control me-5" type="text" id="name"
                                                    placeholder="Enter Name">
                                             <input class="form-control me-5" type="text" id="value"
                                                    placeholder="Enter Value">
+
+                                            <input class="form-control me-5" type="file" id="customFiles"
+                                                   placeholder="Upload Image">
                                             <a href="#" class="btn btn-primary save-btn">Save </a>
                                         </div>
                                     </div>
@@ -78,7 +81,16 @@
                                                 </td>
 
                                                 <td>${items.name}</td>
-                                                <td>${items.value}</td>
+                                                <c:choose>
+                                                    <c:when test="${items.status eq 1}">
+                                                        <td><a href="#!"> <img src="${BASE_URL}${items.value}" alt=""
+                                                                               class="icon-shape icon-md"></a></td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td>${items.value}</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+
 
 
                                                 <td>
@@ -127,31 +139,57 @@
     </layout:put>
     <layout:put block="script">
         <script>
-            document.getElementsByClassName('save-btn').item(0).addEventListener('click', () => {
 
+            document.getElementsByClassName('save-btn').item(0).addEventListener('click', (evt) => {
+evt.preventDefault();
                 let name = document.getElementById("name").value;
                 let value = document.getElementById("value").value;
+                let file = document.getElementById("customFiles").value;
 
                 let formData = new URLSearchParams();
                 formData.append("name", name);
                 formData.append("value", value);
-                secureFetch('${BASE_URL}admin/keywords', {
+                secureFetch('${BASE_URL}admin/api/keywords', {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: formData
-                }).then(response => {
-                    if (!response.ok) {
-                        alert(response.json())
-                    } else {
-                        window.location.href = '${BASE_URL}admin/keywords'
-                    }
+                }).then(response => response.json())
+                    .then(json => {
+                    console.log(json)
+                        alert(file.length)
+                        if(file.length>0){
+                            uploadImage(json.kid)
+                        }
 
-                }).then(json => {
-                    alert(json.text())
                 })
             })
+
+            function uploadImage(id){
+
+                let formData = new FormData();
+                let inputs = document.querySelectorAll('input[type=file]');
+
+                inputs.forEach((input, index) => {
+
+                        let file = input.files[0];
+                        alert(file)
+                        formData.append("files[]", file);
+
+                })
+
+                secureFetch('${BASE_URL}admin/api/keywords/'+id+'/upload-image',{
+                    method:'post',
+                    body:formData,
+                }).then( response =>{
+
+                    response.json()
+                }).then(data=>{
+                    console.log(data)
+
+                })
+            }
         </script>
     </layout:put>
 </layout:extends>

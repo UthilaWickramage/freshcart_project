@@ -16,7 +16,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.Map;
 
 @IsAuthorized
-@Path("/cart")
+@Path("/api/cart")
 public class CartController {
     @Inject
     CartService cartService;

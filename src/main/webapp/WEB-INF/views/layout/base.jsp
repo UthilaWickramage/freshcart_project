@@ -10,10 +10,10 @@
     <title>${App.getString("app_name")} </title>
 
     <link href="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
+    <link href="${BASE_URL}assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
 
     <link href="${BASE_URL}assets/libs/slick-carousel/slick/slick.css" rel="stylesheet" />
     <link href="${BASE_URL}assets/libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
-    <link href="${BASE_URL}assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="${BASE_URL}assets/images/favicon/favicon.ico">
@@ -432,22 +432,18 @@
 
 <jsp:include page="../frontend/include/footer.jsp"/>
 
-<layout:block name="script">
-
-</layout:block>
 
 
-<!-- Javascript-->
-<script src="${BASE_URL}assets/js/fetchScript.js"></script>
+    <script src="${BASE_URL}assets/js/fetchScript.js"></script>
+<script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="${BASE_URL}assets/libs/rater-js/index.js"></script>
 <script src="${BASE_URL}assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-<script src="${BASE_URL}assets/js/request-interceptor.js" type="text/javascript"></script>
 <!-- Libs JS -->
-<script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
+
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.js"></script>
 <script src="${BASE_URL}assets/js/spartan-multi-image-picker.js"/>
-
+<script src="https://js.stripe.com/v3"></script>
 <!-- Theme JS -->
 <script src="${BASE_URL}assets/js/theme.min.js"></script>
 <script src="${BASE_URL}assets/libs/jquery-countdown/dist/jquery.countdown.min.js"></script>
@@ -460,6 +456,10 @@
 <script src="${BASE_URL}assets/js/vendors/increment-value.js"></script>
 
 
+<!-- Javascript-->
+<layout:block name="script">
+
+</layout:block>
 
 </body>
 

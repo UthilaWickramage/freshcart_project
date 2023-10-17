@@ -13,7 +13,7 @@ import lk.freshcart.services.UserService;
 import lk.freshcart.util.JWTTokenUtil;
 
 @IsAuthorized
-@Path("/")
+@Path("/api")
 public class CardController {
     @Inject
     UserService userService;

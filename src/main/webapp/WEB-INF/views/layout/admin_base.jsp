@@ -62,7 +62,7 @@
 <script src="${BASE_URL}assets/js/fetchScript.js"></script>
 <!-- Libs JS -->
 <script src="${BASE_URL}assets/libs/jquery/dist/jquery.min.js"></script>
-
+<script src="https://js.stripe.com/v3/"></script>
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.js"></script>
 <script src="${BASE_URL}assets/js/spartan-multi-image-picker.js"/>

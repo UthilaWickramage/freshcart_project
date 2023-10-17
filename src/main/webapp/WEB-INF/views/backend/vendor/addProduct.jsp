@@ -77,7 +77,7 @@
                                             <textarea class="form-control" id="editor" cols="10"></textarea>
                                         </div>
                                         <h4 class="mb-5 h5">Category Image</h4>
-                                        <div class="card"  id="image-dev">
+                                        <div class="d-grid"  id="image-dev" style="max-width: 400px">
                                             <input type="file" multiple class="" style="display:none" id="customFiles">
                                         </div>
                                     </div>

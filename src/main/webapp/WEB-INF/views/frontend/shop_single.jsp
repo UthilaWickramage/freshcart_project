@@ -9,48 +9,100 @@
                         <div class="row">
 
                             <div class="col-md-6">
+
+<%--                                    <!-- img slide -->--%>
+<%--                                    <div class="product" id="product">--%>
+<%--                                        <div class="zoom" onmousemove="zoom(event)"--%>
+<%--                                             style="background-image: url(${BASE_URL}assets/images/products/product-single-img-1.jpg)">--%>
+<%--                                            <!-- img -->--%>
+<%--                                            <!-- img --><img src="${BASE_URL}assets/images/products/product-single-img-1.jpg" alt="">--%>
+<%--                                        </div>--%>
+<%--                                        <div>--%>
+<%--                                            <div class="zoom" onmousemove="zoom(event)"--%>
+<%--                                                 style="background-image: url(${BASE_URL}assets/images/products/product-single-img-2.jpg)">--%>
+<%--                                                <!-- img -->--%>
+<%--                                                <img src="${BASE_URL}assets/images/products/product-single-img-2.jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div>--%>
+<%--                                            <div class="zoom" onmousemove="zoom(event)"--%>
+<%--                                                 style="background-image: url(${BASE_URL}assets/images/products/product-single-img-3.jpg)">--%>
+<%--                                                <!-- img -->--%>
+<%--                                                <img src="${BASE_URL}assets/images/products/product-single-img-3.jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div>--%>
+<%--                                            <div class="zoom" onmousemove="zoom(event)"--%>
+<%--                                                 style="background-image: url(${BASE_URL}assets/images/products/product-single-img-4.jpg)">--%>
+<%--                                                <!-- img -->--%>
+<%--                                                <img src="${BASE_URL}assets/images/products/product-single-img-4.jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <!-- product tools -->--%>
+<%--                                    <div class="product-tools">--%>
+<%--                                        <div class="thumbnails row g-3" id="productThumbnails">--%>
+<%--                                            <div class="col-3">--%>
+<%--                                                <div class="thumbnails-img">--%>
+<%--                                                    <!-- img -->--%>
+<%--                                                    <img src="${BASE_URL}assets/images/products/product-single-img-1.jpg" alt="">--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="col-3">--%>
+<%--                                                <div class="thumbnails-img">--%>
+<%--                                                    <!-- img -->--%>
+<%--                                                    <img src="${BASE_URL}assets/images/products/product-single-img-2.jpg" alt="">--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="col-3">--%>
+<%--                                                <div class="thumbnails-img">--%>
+<%--                                                    <!-- img -->--%>
+<%--                                                    <img src="${BASE_URL}assets/images/products/product-single-img-3.jpg" alt="">--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="col-3">--%>
+<%--                                                <div class="thumbnails-img">--%>
+<%--                                                    <!-- img -->--%>
+<%--                                                    <img src="${BASE_URL}assets/images/products/product-single-img-4.jpg" alt="">--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="col-3">--%>
+<%--                                                <div class="thumbnails-img">--%>
+<%--                                                    <!-- img -->--%>
+<%--                                                    <img src="${BASE_URL}assets/images/products/product-single-img-1.jpg" alt="">--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+
+<%--                                </div>--%>
                                 <!-- img slide -->
                                 <div class="product mt-5" id="product">
-                                    <c:forEach items="${items.productImage}" var="s" end="0">
-                                        <div class="">
+                                    <c:forEach items="${items.images}" var="s" end="0">
+                                        <div class="d-flex justify-content-center align-items-center border border-black border-1 overflow-hidden">
 
                                             <!-- img -->
 
-                                            <!-- img --><img style="transform: scale(1.1)" src="${BASE_URL}${s.url}"
+                                            <!-- img --><img style="transform: scale(1.1); overflow: hidden" src="${BASE_URL}${s}" height="400px"
                                                              alt="">
 
                                         </div>
                                     </c:forEach>
                                 </div>
                                 <!-- product tools -->
-                                    <%--              <div class="product-tools">--%>
-                                    <%--                <div class="thumbnails row g-3" id="productThumbnails">--%>
-                                    <%--                  <div class="col-3">--%>
-                                    <%--                    <div class="thumbnails-img">--%>
-                                    <%--                      <!-- img -->--%>
-                                    <%--                      <img src="${BASE_URL}assets/images/products/product-single-img-1.jpg" alt="">--%>
-                                    <%--                    </div>--%>
-                                    <%--                  </div>--%>
-                                    <%--                  <div class="col-3">--%>
-                                    <%--                    <div class="thumbnails-img">--%>
-                                    <%--                      <!-- img -->--%>
-                                    <%--                      <img src="${BASE_URL}assets/images/products/product-single-img-2.jpg" alt="">--%>
-                                    <%--                    </div>--%>
-                                    <%--                  </div>--%>
-                                    <%--                  <div class="col-3">--%>
-                                    <%--                    <div class="thumbnails-img">--%>
-                                    <%--                      <!-- img -->--%>
-                                    <%--                      <img src="${BASE_URL}assets/images/products/product-single-img-3.jpg" alt="">--%>
-                                    <%--                    </div>--%>
-                                    <%--                  </div>--%>
-                                    <%--                  <div class="col-3">--%>
-                                    <%--                    <div class="thumbnails-img">--%>
-                                    <%--                      <!-- img -->--%>
-                                    <%--                      <img src="${BASE_URL}assets/images/products/product-single-img-4.jpg" alt="">--%>
-                                    <%--                    </div>--%>
-                                    <%--                  </div>--%>
-                                    <%--                </div>--%>
-                                    <%--              </div>--%>
+                                                  <div class="product-tools">
+                                                    <div class="thumbnails row gx-3 " id="productThumbnails">
+
+                                                     <c:forEach items="${items.images}" var="t" begin="1" end="5">
+                                                         <div class="col-3 d-flex align-items-center " style="min-height: 100px">
+                                                             <div class="thumbnails-img ">
+                                                                 <!-- img -->
+                                                                 <img src="${BASE_URL}${t}" class="border border-black border-1" alt="">
+                                                             </div>
+                                                         </div>
+                                                     </c:forEach>
+
+                                                    </div>
+                                                  </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="ps-lg-10 mt-6 mt-md-0">
@@ -594,7 +646,7 @@
                         desc: desc,
                     })
                 }
-                    secureFetch('${BASE_URL}reviews',options)
+                    secureFetch('${BASE_URL}api/reviews',options)
                     .then(response => response.text())
                     .then(text => alert(text));
             }
@@ -614,7 +666,7 @@
 
                     })
                 }
-                secureFetch("${BASE_URL}cart",options).then(response => response.text())
+                secureFetch("${BASE_URL}api/cart",options).then(response => response.text())
                     .then(text=>{
                         if(text=="Success"){
                             window.location.href="${BASE_URL}cart";

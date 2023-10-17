@@ -19,4 +19,17 @@ public class AppService {
         Session session = HibernateUtil.getSessionFactory().openSession();
         return session.createQuery("select a from AppSetting a",AppSetting.class).getResultList();
     }
+
+    public AppSetting getKeywordById(Long id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return session.get(AppSetting.class, id);
+
+    }
+
+    public void update(AppSetting appSetting){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(appSetting);
+        transaction.commit();
+    }
 }

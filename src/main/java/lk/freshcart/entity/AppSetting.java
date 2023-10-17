@@ -12,6 +12,7 @@ public class AppSetting extends BaseEntity{
     private String name;
     @Column(columnDefinition = "LONGTEXT")
     private String value;
+    private Integer status = 0;
 
     public Long getId() {
         return id;
@@ -35,5 +36,13 @@ public class AppSetting extends BaseEntity{
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

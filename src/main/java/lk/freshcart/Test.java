@@ -12,7 +12,8 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
+        double v = 2000.9;
+        long l= Math.round(v+v);
+        System.out.println(l);
     }
 }

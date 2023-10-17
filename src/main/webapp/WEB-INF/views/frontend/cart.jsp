@@ -35,8 +35,8 @@
                                     <div class="row align-items-center">
                                         <div class="col-3 col-md-2">
                                             <!-- img -->
-                                            <c:forEach items="${item.productId.productImage}" var="i" end="0">
-                                                <img src="${BASE_URL}${i.url}" alt="Ecommerce" class="img-fluid"/>
+                                            <c:forEach items="${item.productId.images}" var="i" end="0">
+                                                <img src="${BASE_URL}${i}" alt="Ecommerce" class="img-fluid"/>
                                             </c:forEach>
                                         </div>
                                         <div class="col-4 col-md-5">
@@ -138,9 +138,9 @@
                             </div>
                             <div class="d-grid mb-1 mt-4">
                                 <!-- btn -->
-                                <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
-                                        type="submit">
-                                    Go to Checkout <span class="fw-bold">Rs ${it.total}0</span></button>
+                                <a class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
+                                        href="${BASE_URL}checkout">
+                                    Go to Checkout <span class="fw-bold">Rs ${it.total}0</span></a>
                             </div>
                             <!-- text -->
                             <p><small>By placing your order, you agree to be bound by the Freshcart <a href="#!">Terms
@@ -186,7 +186,7 @@
                     body:formData
                 }
 
-                    secureFetch("${BASE_URL}cart",options)
+                    secureFetch("${BASE_URL}api/cart",options)
                         .then(response=>{
                             if(response.ok){
                                 alert("Product removed successfully")

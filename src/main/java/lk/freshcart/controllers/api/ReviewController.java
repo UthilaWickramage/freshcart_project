@@ -13,7 +13,7 @@ import lk.freshcart.entity.Reviews;
 import lk.freshcart.services.ProductService;
 import org.glassfish.jersey.server.mvc.Viewable;
 @IsAuthorized
-@Path("/reviews")
+@Path("/api/reviews")
 public class ReviewController {
     @Inject
     ProductService productService;

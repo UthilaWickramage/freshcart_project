@@ -133,10 +133,10 @@
                     <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
                       <c:forEach items="${it[0]}" var="s">
                           <div class="col">
-                              <div class="card card-product">
+                              <div class="card card-product" >
                                   <div class="card-body">
 
-                                      <div class="text-center position-relative ">
+                                      <div class="text-center position-relative " >
                                           <div class=" position-absolute top-0 start-0">
                                               <c:choose>
                                                   <c:when test="${s.inStock}">
@@ -148,9 +148,9 @@
                                               </c:choose>
 
                                           </div>
-                                          <c:forEach items="${s.productImage}" var="item" end="0">
-                                              <a href="${BASE_URL}${s.id}"> <img src="${BASE_URL}${item.url}" alt="Grocery Ecommerce Template"
-                                                                 class="mb-3 img-fluid"></a>
+                                          <c:forEach items="${s.images}" var="item" end="0">
+                                              <a href="${BASE_URL}${s.id}"> <img src="${BASE_URL}${item}" alt="Grocery Ecommerce Template"
+                                                                 class="mb-3 img-fluid" style="height: 200px; overflow: hidden"></a>
                                           </c:forEach>
 
 
