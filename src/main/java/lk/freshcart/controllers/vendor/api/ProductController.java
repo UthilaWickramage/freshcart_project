@@ -81,18 +81,25 @@ public class ProductController {
         System.out.println(id);
         List<UploadService.FileItem> items = new ArrayList<>();
         UploadService uploadService = new UploadService(context);
-        Product product = productService.getProductById(id);
+        List<Product> lists = productService.getAllproducts();
+        List<Product> products = new ArrayList<>();
+        lists.forEach(product -> {
+            if(product.getId()==id){
+                products.add(product);
+            }});
 
+        System.out.println(body.getParent().getBodyParts().size());
         body.getParent().getBodyParts().forEach(part -> {
+
             InputStream is = part.getEntityAs(InputStream.class);
             ContentDisposition contentDisposition = part.getContentDisposition();
             UploadService.FileItem fileItem = uploadService.upload("product/" + id, is, contentDisposition);
             items.add(fileItem);
-            product.getImages().add(fileItem.getPath());
+            products.get(0).getImages().add(fileItem.getPath());
         });
-        productService.update(product);
+        productService.update(products.get(0));
 
-        return Response.status(Response.Status.OK).entity(items).build();
+        return Response.ok().entity(items).build();
     }
 }
 

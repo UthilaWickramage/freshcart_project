@@ -20,6 +20,7 @@
   <link href="${BASE_URL}assets/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="${BASE_URL}assets/libs/feather-webfont/dist/feather-icons.css" rel="stylesheet">
   <link href="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+  <link href="${BASE_URL}assets/css/iziToast.min.css"/>
 
 
   <!-- Theme CSS -->
@@ -66,6 +67,7 @@
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.js"></script>
 <script src="${BASE_URL}assets/js/spartan-multi-image-picker.js"/>
+<script src="${BASE_URL}assets/js/iziToast.min.js"/>
 <!-- Theme JS -->
 <script src="${BASE_URL}assets/js/theme.min.js"></script>
 <script src="${BASE_URL}assets/libs/apexcharts/dist/apexcharts.min.js"></script>

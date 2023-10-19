@@ -23,7 +23,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import java.util.Date;
 
 
-@Singleton
+
 @Path("/signin")
 public class SigninController {
     @Context

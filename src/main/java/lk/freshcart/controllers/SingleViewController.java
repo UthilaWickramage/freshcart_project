@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
 import lk.freshcart.annotations.IsUser;
 import lk.freshcart.entity.Product;
 import lk.freshcart.services.ProductService;
@@ -20,11 +21,18 @@ public class SingleViewController {
     @GET
 @Path("{id}")
     public Viewable get(@PathParam("id") Long id){
-        Product productById = productService.getProductById(id);
+        System.out.println(id);
+        List<Product> lists = productService.getAllproducts();
+  List<Product> products = new ArrayList<>();
+lists.forEach(product -> {
+    if(product.getId()==id){
+     products.add(product);
 
-        List<Product> list = new ArrayList<>();
-        list.add(productById);
+    }
+});
+        System.out.println(products.get(0).getImages().size());
 
-        return new Viewable("/frontend/shop_single",list);
+
+        return new Viewable("/frontend/shop_single",products);
     }
 }

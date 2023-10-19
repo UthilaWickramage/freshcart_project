@@ -189,7 +189,7 @@
                     secureFetch("${BASE_URL}api/cart",options)
                         .then(response=>{
                             if(response.ok){
-                                alert("Product removed successfully")
+
                                 window.location.href="${BASE_URL}cart"
                             }
                             response.text()

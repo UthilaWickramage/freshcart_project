@@ -61,7 +61,7 @@
                     <div class="category-slider ">
 
                        <c:forEach items="${it[1]}" var="items">
-                           <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
+                           <div class="item"> <a href="${BASE_URL}categories/${items.id}" class="text-decoration-none text-inherit">
                                <div class="card card-product mb-lg-4">
                                    <div class="card-body text-center py-8">
                                        <img src="${BASE_URL}${items.image_url}" alt="Grocery Ecommerce Template"

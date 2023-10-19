@@ -19,10 +19,15 @@ public class ProductService {
         }
     }
 
+
+
     public Product getProductById(Long id){
         Session session = HibernateUtil.getSessionFactory().openSession();
+        System.out.println(id);
         try{
-            return session.get(Product.class,id);
+            Product product = session.get(Product.class,id);
+            System.out.println(product.getImages().get(1));;
+            return product;
         }catch (Exception e){
 return null;
         }

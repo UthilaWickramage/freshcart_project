@@ -14,6 +14,7 @@
 
     <link href="${BASE_URL}assets/libs/slick-carousel/slick/slick.css" rel="stylesheet" />
     <link href="${BASE_URL}assets/libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
+    <link href="${BASE_URL}assets/css/iziToast.min.css">
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="${BASE_URL}assets/images/favicon/favicon.ico">
@@ -442,8 +443,9 @@
 
 <script src="${BASE_URL}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${BASE_URL}assets/libs/simplebar/dist/simplebar.min.js"></script>
-<script src="${BASE_URL}assets/js/spartan-multi-image-picker.js"/>
-<script src="https://js.stripe.com/v3"></script>
+<script src="${BASE_URL}assets/js/iziToast.min.js"></script>
+<script src="${BASE_URL}assets/js/spartan-multi-image-picker.js"></script>
+
 <!-- Theme JS -->
 <script src="${BASE_URL}assets/js/theme.min.js"></script>
 <script src="${BASE_URL}assets/libs/jquery-countdown/dist/jquery.countdown.min.js"></script>

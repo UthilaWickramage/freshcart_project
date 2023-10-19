@@ -12,8 +12,11 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
-        double v = 2000.9;
-        long l= Math.round(v+v);
-        System.out.println(l);
+//        double v = 2000.9;
+//        long l= Math.round(v+v);
+//        System.out.println(l);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Product product = session.get(Product.class, 2);
+        System.out.println(product.getImages().size());
     }
 }

@@ -78,7 +78,7 @@
                           </div>
                         </td>
                         <td>
-                          <c:forEach items="${items.images}" var="item" end="0">
+                          <c:forEach items="${items.images}" var="item">
                             <a href="#!"> <img src="${BASE_URL}${item}" alt=""
                                                class="icon-shape icon-md"></a>
                           </c:forEach>
