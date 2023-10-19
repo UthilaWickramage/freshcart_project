@@ -65,7 +65,7 @@
             <!-- nav item -->
             <li class="nav-item">
                 <!-- nav link -->
-                <a class="nav-link " aria-current="page" href="${BASE_URL}account-orders"><i
+                <a class="nav-link " aria-current="page" href="${BASE_URL}account-orders?page=1"><i
                         class="feather-icon icon-shopping-bag me-2"></i>Your Orders</a>
             </li>
             <!-- nav item -->

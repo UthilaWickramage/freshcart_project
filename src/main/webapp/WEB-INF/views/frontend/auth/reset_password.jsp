@@ -1,8 +1,10 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <layout:extends name="auth_base">
   <layout:put block="content">
     <div class="border-bottom shadow-sm">
       <nav class="navbar navbar-light py-2">
+        <c:set var="code" value="${it}"/>
         <div class="container justify-content-center justify-content-lg-between">
           <a class="navbar-brand" href="${BASE_URL}">
             <img src="${BASE_URL}assets/images/logo/freshcart-logo.svg" alt="" class="d-inline-block align-text-top">
@@ -30,29 +32,27 @@
               <div>
                 <div class="mb-lg-9 mb-5">
                   <!-- heading -->
-                  <h1 class="mb-2 h2 fw-bold">Forgot your password?</h1>
-                  <p>Please enter the email address associated with your account and We will email you a link to reset your
-                    password.</p>
+                  <h1 class="mb-2 h2 fw-bold">Reset your password</h1>
+                  <p>Please enter the new Password to replace the old password</p>
                 </div>
                 <!-- form -->
-            <div>
+                <div>
                   <!-- row -->
                   <div class="row g-3">
                     <!-- col -->
                     <div class="col-12">
                       <!-- input -->
-                      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                      <input type="password" class="form-control" id="password" placeholder="New password" required>
                     </div>
 
                     <!-- btn -->
-                    <div class="col-12 d-grid gap-2">
-                      <button type="submit" id="btn" class="btn btn-primary">Request Verification Email</button>
+                    <div class="col-12 d-grid gap-2"> <button class="btn btn-primary" onclick="sendPassword('${code}')">Reset Password</button>
                       <a href="${BASE_URL}signin" class="btn btn-light">Back</a>
                     </div>
 
 
                   </div>
-       </div>
+                </div>
               </div>
             </div>
           </div>
@@ -64,27 +64,24 @@
   </layout:put>
   <layout:put block="script">
     <script>
-      document.getElementById("btn").addEventListener('click',(e)=>{
-e.preventDefault();
-        let email = document.getElementById("inputEmail4").value;
-        alert(email)
+      function sendPassword(code){
         let formData = new FormData();
-        formData.append("email",email);
-        fetch("${BASE_URL}api/forgotPassword",{
-          method:'post',
+        let password = document.getElementById("password").value
+        formData.append("password",password);
+        formData.append("token",code)
+        alert(code)
+        alert(password)
+        fetch("${BASE_URL}resetPassword",{
+          method:'put',
           body:formData,
-        }).then(response =>{
+        }).then(response=>{
           if(response.ok){
-            alert("Please Check your inbox");
+            document.location.href = "${BASE_URL}signin"
           }else{
-            response.text();
+            alert(response.text())
           }
-        }).then(text=>{
-          alert(text);
         })
-
-
-      })
+      }
     </script>
   </layout:put>
 </layout:extends>

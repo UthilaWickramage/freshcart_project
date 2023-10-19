@@ -2,6 +2,7 @@ package lk.freshcart.controllers.vendor;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
 import lk.freshcart.annotations.IsVendor;
 import lk.freshcart.entity.Order;
@@ -20,14 +21,14 @@ public class OrderController {
 
     public Viewable get(){
         OrderService orderService= new OrderService();
-        List<Order> allOrders = orderService.getAllOrders();
-        return new Viewable("/backend/vendor/order_list",allOrders);
+//        List<Order> allOrders = orderService.getAllOrders();
+        return new Viewable("/backend/vendor/order_list");
     }
 
 
-    @Path("order")
+    @Path("order/{id}")
     @GET
-    public Viewable Vendor_order(@QueryParam("id")Long id){
+    public Viewable Vendor_order(@PathParam("id") Long id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Order order = session.get(Order.class, id);
         return new Viewable("/backend/vendor/order_single",order);

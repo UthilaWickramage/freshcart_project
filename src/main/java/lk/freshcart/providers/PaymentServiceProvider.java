@@ -34,7 +34,7 @@ public class PaymentServiceProvider {
     @Context
     HttpServletResponse response;
 
-    public String getUrl(List<CartItem> cartItems, User user, Order order) throws StripeException, IOException, JsonProcessingException {
+    public String getUrl(List<CartItem> cartItems,Order order) throws StripeException, IOException, JsonProcessingException {
 
         Stripe.apiKey = Env.get("app.secret_key");
         List<SessionCreateParams.LineItem> list = new ArrayList<>();
@@ -51,7 +51,6 @@ public class PaymentServiceProvider {
                                             SessionCreateParams.LineItem.PriceData.ProductData.builder()
 
                                                     .setName(cartItem.getProductId().getTitle())
-                                                    .addImage("http://localhost:8080/FreshCart/" + cartItem.getProductId().getImages().get(0))
                                                     .build())
                                     .build()).build();
             list.add(lineItem);
@@ -71,8 +70,38 @@ public class PaymentServiceProvider {
         return session.getUrl();
     }
 
-    public void getUrl(Product product, User user) {
+    public String getUrl(Product product,Order order) throws StripeException, IOException, JsonProcessingException{
+        Stripe.apiKey = Env.get("app.secret_key");
+        List<SessionCreateParams.LineItem> list = new ArrayList<>();
 
+            SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
+                    .setQuantity(Long.valueOf(1))
+
+                    .setPriceData(
+                            SessionCreateParams.LineItem.PriceData.builder()
+                                    .setCurrency("usd")
+                                    .setUnitAmount(Math.round(product.getSale_price() + product.getShipping_price()))
+                                    .setProductData(
+                                            SessionCreateParams.LineItem.PriceData.ProductData.builder()
+
+                                                    .setName(product.getTitle())
+                                                    .build())
+                                    .build()).build();
+            list.add(lineItem);
+
+
+        SessionCreateParams params =
+                SessionCreateParams.builder()
+                        .setMode(SessionCreateParams.Mode.PAYMENT)
+                        .setSuccessUrl(Env.get("success_url")+order.getId())
+                        .setCancelUrl(Env.get("cancel_url"))
+                        .setClientReferenceId(order.getId().toString())
+                        .addAllLineItem(list).build();
+
+
+        Session session = Session.create(params);
+        System.out.println(session.getUrl());
+        return session.getUrl();
     }
 
 

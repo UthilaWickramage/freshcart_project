@@ -90,6 +90,19 @@ public class UserService {
         transaction.commit();
     }
 
+    public Optional<User> checkCode(String code) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+           return session.createQuery("select u from User u where u.verification_code=:verification_code").setParameter("verification_code", code).uniqueResultOptional();
+
+
+    }
+    public void changePassword(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(user);
+        transaction.commit();
+    }
     public void changePassword(Long id, String password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();

@@ -95,9 +95,10 @@
 
                                         <div class="col-xxl-7 col-lg-7 col-md-9 col-9 d-grid">
 
-                                            <button type="button"
+                                            <button type="button" onclick="buyNow(${items.id})"
                                                     class="btn btn-dark-primary"><i
-                                                    class="feather-icon icon-credit-card me-2"></i>Buy Now
+                                                    class="feather-icon icon-credit-card me-2"
+                                                    ></i>Buy Now
                                             </button>
                                         </div>
 
@@ -118,8 +119,8 @@
                                             <a class="btn btn-light " href="#" data-bs-toggle="tooltip"
                                                data-bs-html="true" aria-label="Compare"><i
                                                     class="bi bi-arrow-left-right"></i></a>
-                                            <a class="btn btn-light " href="shop-wishlist.html"
-                                               data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i
+                                            <a class="btn btn-light "  onclick="addToWishlist(${items.id})" href="#"
+                                               ><i
                                                     class="feather-icon icon-heart"></i></a>
                                         </div>
                                     </div>
@@ -577,6 +578,21 @@
     </layout:put>
     <layout:put block="script">
         <script>
+            function buyNow(product_id) {
+                alert(product_id)
+                let form = new FormData();
+                form.append("id", product_id)
+                secureFetch("${BASE_URL}api/checkout/buy-now", {
+                    method: 'post',
+                    body: form
+                }).then(async resp => {
+
+                    return resp.text()
+                }).then(url => {
+                    document.location.href = url;
+                })
+            }
+
             function saveReview(product_id) {
 
                 let rating = document.getElementById("rating").value;
@@ -619,6 +635,8 @@
 
                     })
                 }
+
+
                 secureFetch("${BASE_URL}api/cart", options).then(response => response.text())
                     .then(text => {
                             if (text == "Success") {
@@ -629,6 +647,24 @@
                             }
                         }
                     );
+            }
+
+            function addToWishlist(id){
+                let formData = new FormData();
+                formData.append("id",id);
+                let options = {
+                    method:'post',
+                    body:formData
+                }
+                secureFetch("${BASE_URL}api/wishlist", options).then(response => {
+                    if(response.ok){
+                        alert("product added successfully");
+                        window.location.href = "${BASE_URL}wishlist";
+                    }else{
+                        alert(response.text())
+                    }
+                });
+
             }
 
             function view(src, element) {

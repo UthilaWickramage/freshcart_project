@@ -63,7 +63,7 @@ public class Product extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
     private Set<OrderItem> orderItems = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Set<WishListItem> wishlistItems = new HashSet<>();
 
     public Set<WishListItem> getWishlistItems() {

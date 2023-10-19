@@ -31,6 +31,27 @@ public class OrderService {
         return order;
     }
 
+    public Order saveOrder(Product product, User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Order order = new Order();
+        order.setTotal(product.getShipping_price()+product.getSale_price());
+        order.setOrderStatus(OrderStatus.PENDING);
+        order.setUserId(user);
+        session.persist(order);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setProductId(product);
+            orderItem.setQty(1);
+            orderItem.setOrderId(order);
+            session.persist(orderItem);
+
+
+        transaction.commit();
+
+        return order;
+    }
+
     public void updateOrderStatus(Long id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Order order = session.get(Order.class, id);
@@ -58,13 +79,23 @@ public class OrderService {
 
     }
 
-    public List<Order> getAllOrders(){
+    public List<Order> getAllOrders(int max,int pageNo){
         Session session = HibernateUtil.getSessionFactory().openSession();
-       return session.createQuery("select o from Order o", Order.class).getResultList();
+        return session.createQuery("select o from Order o", Order.class)
+                .setFirstResult(max*(pageNo>0?pageNo-1:0))
+                .setMaxResults(max)
+                .getResultList();
     }
-    public List<Order> getOrdersByVendor(User user){
+
+    public List<Order> getAllOrders(User user,int max,int pageNo){
+
         Session session = HibernateUtil.getSessionFactory().openSession();
-        return session.createQuery("select o from Order o where userId=:user", Order.class).setParameter("user",user).getResultList();
+
+        return session.createQuery("select o from Order o where userId=:user", Order.class)
+                .setParameter("user",user)
+                .setFirstResult(max*(pageNo>0?pageNo-1:0))
+                .setMaxResults(max)
+                .getResultList();
 
     }
 

@@ -3,6 +3,7 @@
 <layout:extends name="admin_base">
     <layout:put block="content">
         <main class="main-content-wrapper">
+            <c:set value="${it[1]}" var="pageCount"/>
             <div class="container">
                 <!-- row -->
                 <div class="row mb-8">
@@ -68,7 +69,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${it}" var="order">
+                                        <c:forEach items="${it[0]}" var="order">
                                             <tr>
 
                                                 <td>
@@ -81,7 +82,7 @@
                                                     </div>
                                                 </td>
 
-                                                <td><a href="${BASE_URL}admin/order" class="text-reset">#${order.id}</a></td>
+                                                <td><a href="${BASE_URL}admin/order/${order.id}" class="text-reset">#${order.id}</a></td>
 
                                                 <td>
                                                     <c:forEach items="${order.orderItems}" var="items">
@@ -157,9 +158,17 @@
                                 <nav class="mt-2 mt-md-0">
                                     <ul class="pagination mb-0 ">
                                         <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                                        <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                                        <c:forEach var="i" begin="1" end="${pageCount}">
+                                           <c:choose>
+                                               <c:when test="${i eq it[2]}">
+                                                   <li class="page-item"><a class="page-link active" href="${BASE_URL}admin/orders?page=${i}">${i}</a></li>
+                                               </c:when>
+                                               <c:otherwise>
+                                                   <li class="page-item"><a class="page-link" href="${BASE_URL}admin/orders?page=${i}">${i}</a></li>
+                                               </c:otherwise>
+                                           </c:choose>
+                                        </c:forEach>
+
                                         <li class="page-item"><a class="page-link" href="#!">Next</a></li>
                                     </ul>
                                 </nav>

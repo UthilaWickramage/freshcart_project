@@ -79,7 +79,7 @@
                           </div>
                         </td>
 
-                        <td><a href="${BASE_URL}vendor/order?id=${order.id}"  class="text-reset">#${order.id}</a></td>
+                        <td><a href="${BASE_URL}vendor/order/${order.id}"  class="text-reset">#${order.id}</a></td>
 
                         <td>
                           <c:forEach items="${order.orderItems}" var="items">

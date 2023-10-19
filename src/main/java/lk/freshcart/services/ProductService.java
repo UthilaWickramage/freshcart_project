@@ -3,6 +3,7 @@ package lk.freshcart.services;
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
 import lk.freshcart.entity.Reviews;
+import lk.freshcart.entity.User;
 import lk.freshcart.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -58,5 +59,15 @@ return null;
 
         session.persist(reviews);
         transaction.commit();
+    }
+
+    public List<Product> getReviewsByVendor(User user){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+           return session.createQuery("select p from Product p where userId=:user").setParameter("user",user).getResultList();
+        }catch (Exception e){
+            return null;
+        }
+
     }
 }

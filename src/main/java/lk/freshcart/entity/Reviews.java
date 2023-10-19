@@ -16,7 +16,7 @@ public class Reviews extends BaseEntity{
     @JoinColumn(name = "product_id")
     private Product productId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User userId;
 

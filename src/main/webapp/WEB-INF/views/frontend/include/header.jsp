@@ -149,7 +149,7 @@
                                                 </a>
                                             </div>
                                             <div class="ms-6 text-center">
-                                                <a href="account-orders.html" class="text-reset">
+                                                <a href="${BASE_URL}account-orders?page=1" class="text-reset">
                                                     <div class="lh-1">
                                                         <div class="mb-2">
                                                             <i class="bi bi-archive fs-4"></i>

@@ -1,7 +1,9 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <layout:extends name="admin_base">
   <layout:put block="content">
     <main class="main-content-wrapper">
+      <c:set var="order" scope="page" value="${it}"/>
       <!-- container -->
       <div class="container">
         <!-- row -->
@@ -12,12 +14,7 @@
                 <!-- page header -->
                 <h2>Order Single</h2>
                 <!-- breacrumb -->
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#" class="text-inherit">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Order Single</li>
-                  </ol>
-                </nav>
+
               </div>
               <!-- button -->
               <div>
@@ -35,8 +32,32 @@
               <div class="card-body p-6">
                 <div class="d-md-flex justify-content-between">
                   <div class="d-flex align-items-center mb-2 mb-md-0">
-                    <h2 class="mb-0">Order ID: #FC001</h2>
-                    <span class="badge bg-light-warning text-dark-warning ms-2">Pending</span>
+                    <h2 class="mb-0">Order ID: #${order.id}</h2>
+                    <c:choose>
+                      <c:when test="${order.orderStatus=='PENDING'}">
+                        <span class="badge bg-light-warning text-dark-warning ms-2">Pending</span> </c:when>
+                      <c:otherwise>
+                        <c:choose>
+                          <c:when test="${order.orderStatus=='VERIFIED'}">
+                            <span class="badge bg-light-info text-dark-warning ms-2">Verified</span> </c:when>
+                          <c:otherwise>
+                            <c:choose>
+                              <c:when test="${order.orderStatus=='SHIPPED'}">
+                                <span class="badge bg-light-subtle text-dark-warning ms-2">Shipped</span> </c:when>
+                              <c:otherwise>
+                                <c:choose>
+                                  <c:when test="${order.orderStatus=='DELIVERED'}">
+                                    <span class="badge bg-light-success text-dark-warning ms-2">Delivered</span> </c:when>
+                                  <c:otherwise>
+                                    <span class="badge bg-light-danger text-dark-warning ms-2">Cancelled</span> </c:otherwise>
+                                </c:choose>
+                              </c:otherwise>
+                            </c:choose>
+                          </c:otherwise>
+                        </c:choose>
+                      </c:otherwise>
+                    </c:choose>
+
                   </div>
                   <!-- select option -->
                   <div class="d-md-flex">
@@ -61,9 +82,18 @@
                     <div class="col-lg-4 col-md-4 col-12">
                       <div class="mb-6">
                         <h6>Customer Details</h6>
-                        <p class="mb-1 lh-lg">John Alex<br>
-                          anderalex@example.com<br>
-                          +998 99 22123456</p>
+                        <p class="mb-1 lh-lg">${order.userId.first_name} ${order.userId.last_name}<br>
+                            ${order.userId.email}<br>
+                          <c:choose>
+                            <c:when test="${order.userId.mobile eq null}">
+                              <span class="badge bg-light-danger text-dark-warning ms-2">Not Available</span>
+                            </c:when>
+
+                            <c:otherwise>
+                              ${order.userId.mobile}
+                            </c:otherwise>
+                          </c:choose>
+                        </p>
                         <a href="#">View Profile</a>
                       </div>
                     </div>
@@ -71,10 +101,27 @@
                     <div class="col-lg-4 col-md-4 col-12">
                       <div class="mb-6">
                         <h6>Shipping Address</h6>
-                        <p class="mb-1 lh-lg">Gerg Harvell<br>
-                          568, Suite Ave.<br>
-                          Austrlia, 235153 <br>
-                          Contact No. +91 99999 12345</p>
+                        <p class="mb-1 lh-lg">${order.userId.first_name} ${order.userId.last_name}<br>
+                          <c:choose>
+                            <c:when test="${order.userId.address eq null and order.userId.city eq null}">
+                              <span class="badge bg-light-danger text-dark-warning ms-2">Not Available</span>
+                            </c:when>
+
+                            <c:otherwise>
+                              ${order.userId.address}.<br>
+                              ${order.userId.city}<br>
+                            </c:otherwise>
+                          </c:choose>
+
+                          Contact No.  <c:choose>
+                            <c:when test="${order.userId.mobile eq null}">
+                              <span class="badge bg-light-danger text-dark-primary ms-2">Not Available</span>
+                            </c:when>
+
+                            <c:otherwise>
+                              ${order.userId.mobile}.
+                            </c:otherwise>
+                          </c:choose></p>
 
                       </div>
                     </div>
@@ -82,9 +129,9 @@
                     <div class="col-lg-4 col-md-4 col-12">
                       <div class="mb-6">
                         <h6>Order Details</h6>
-                        <p class="mb-1 lh-lg">Order ID: <span class="text-dark">FC001</span><br>
-                          Order Date: <span class="text-dark">October 22, 2023</span><br>
-                          Order Total: <span class="text-dark">$734.28</span></p>
+                        <p class="mb-1 lh-lg">Order ID: <span class="text-dark">${order.id}</span><br>
+                          Order Date: <span class="text-dark">${order.createdAt}</span><br>
+                          Order Total: <span class="text-dark">$${order.total}</span></p>
                       </div>
                     </div>
                   </div>
@@ -106,114 +153,33 @@
                       </thead>
                       <!-- tbody -->
                       <tbody>
-                      <tr>
-                        <td>
-                          <a href="#" class="text-inherit">
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="${BASE_URL}assets/images/products/product-img-1.jpg" alt=""
-                                     class="icon-shape icon-lg">
-                              </div>
-                              <div class="ms-lg-4 mt-2 mt-lg-0">
-                                <h5 class="mb-0 h6">
-                                  Haldiram's Sev Bhujia
-                                </h5>
+                      <c:forEach items="${order.orderItems}" var="items">
+                        <tr>
+                          <td>
+                            <a href="#" class="text-inherit">
+                              <div class="d-flex align-items-center">
+                                <div>
+                                  <c:forEach var="images" items="${items.productId.images}" end="0">
+                                    <img src="${BASE_URL}${images}" alt=""
+                                         class="icon-shape icon-lg">
+                                  </c:forEach>
 
-                              </div>
-                            </div>
-                          </a>
-                        </td>
-                        <td><span class="text-body">$18.0</span></td>
-                        <td>1</td>
-                        <td>$18.00</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="#" class="text-inherit">
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="${BASE_URL}assets/images/products/product-img-2.jpg" alt=""
-                                     class="icon-shape icon-lg">
-                              </div>
-                              <div class="ms-lg-4 mt-2 mt-lg-0">
-                                <h5 class="mb-0 h6">
-                                  NutriChoice Digestive
-                                </h5>
+                                </div>
+                                <div class="ms-lg-4 mt-2 mt-lg-0">
+                                  <h5 class="mb-0 h6">
+                                      ${items.productId.title}
+                                  </h5>
 
+                                </div>
                               </div>
-                            </div>
-                          </a>
-                        </td>
-                        <td><span class="text-body">$24.0</span></td>
-                        <td>1</td>
-                        <td>$24.00</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="#" class="text-inherit">
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="${BASE_URL}assets/images/products/product-img-3.jpg" alt=""
-                                     class="icon-shape icon-lg">
-                              </div>
-                              <div class="ms-lg-4 mt-2 mt-lg-0">
-                                <h5 class="mb-0 h6">
-                                  Cadbury 5 Star Chocolate
-                                </h5>
-
-                              </div>
-                            </div>
-                          </a>
-                        </td>
-                        <td><span class="text-body">$32.0</span></td>
-                        <td>1</td>
-                        <td>$32.0</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="#" class="text-inherit">
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="${BASE_URL}assets/images/products/product-img-4.jpg" alt=""
-                                     class="icon-shape icon-lg">
-                              </div>
-                              <div class="ms-lg-4 mt-2 mt-lg-0">
-                                <h5 class="mb-0 h6">
-                                  Onion Flavour Potato
-                                </h5>
-
-                              </div>
-                            </div>
-                          </a>
-                        </td>
-                        <td><span class="text-body">$3.0</span></td>
-                        <td>2</td>
-                        <td>$6.0</td>
-                      </tr>
-                      <tr>
-                        <td class="border-bottom-0 pb-0"></td>
-                        <td class="border-bottom-0 pb-0"></td>
-                        <td colspan="1" class="fw-medium text-dark ">
-                          <!-- text -->
-                          Sub Total :
-                        </td>
-                        <td class="fw-medium text-dark ">
-                          <!-- text -->
-                          $80.00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="border-bottom-0 pb-0"></td>
-                        <td class="border-bottom-0 pb-0"></td>
-                        <td colspan="1" class="fw-medium text-dark ">
-                          <!-- text -->
-                          Shipping Cost
-                        </td>
-                        <td class="fw-medium text-dark  ">
-                          <!-- text -->
-                          $10.00
-                        </td>
-                      </tr>
+                            </a>
+                          </td>
+                          <c:set var="price" scope="page" value="${items.productId.sale_price+ items.productId.shipping_price}"/>
+                          <td><span class="text-body">$${price}</span></td>
+                          <td>${items.qty}</td>
+                          <td>$${items.qty*price}</td>
+                        </tr>
+                      </c:forEach>
 
                       <tr>
                         <td></td>
@@ -224,7 +190,7 @@
                         </td>
                         <td class="fw-semi-bold text-dark ">
                           <!-- text -->
-                          $90.00
+                          $${order.total}0
                         </td>
                       </tr>
 

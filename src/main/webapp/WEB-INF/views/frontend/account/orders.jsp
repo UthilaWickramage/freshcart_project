@@ -1,7 +1,9 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <layout:extends name="base">
   <layout:put block="content">
     <main>
+        <c:set value="${it[1]}" var="pageCount"/>
       <!-- section -->
       <section>
         <div class="container">
@@ -24,8 +26,7 @@
                     <!-- Table Head -->
                     <thead class="bg-light">
                     <tr>
-                      <th>&nbsp;</th>
-                      <th>Product</th>
+
                       <th>Order</th>
                       <th>Date</th>
                       <th>Items</th>
@@ -37,206 +38,86 @@
                     </thead>
                     <tbody>
                     <!-- Table body -->
-                    <tr>
-                      <td class="align-middle border-top-0 w-0">
-                        <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-1.jpg" alt="Ecommerce"
-                                          class="icon-shape icon-xl"></a>
+                    <c:forEach var="order" items="${it[0]}">
+                      <tr>
+                        <td class="align-middle border-top-0 w-0">
+<%--                          <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-1.jpg" alt="Ecommerce"--%>
+<%--                                            class="icon-shape icon-xl"></a>--%>
+<h6>${order.id}</h6>
+</td>
+                        <td class="align-middle border-top-0">
 
-                      </td>
-                      <td class="align-middle border-top-0">
+                          <a href="#" class="fw-semi-bold text-inherit">
+                            <h6 class="mb-0">${order.createdAt}</h6>
+                          </a>
 
-                        <a href="#" class="fw-semi-bold text-inherit">
-                          <h6 class="mb-0">Haldiram's Nagpur Aloo Bhujia</h6>
-                        </a>
-                        <span><small class="text-muted">400g</small></span>
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">#14899</a>
+                        </td>
+                        <td class="align-middle border-top-0">
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        March 5, 2023
+                          <c:forEach items="${order.orderItems}" var="items">
+                            <c:forEach items="${items.productId.images}" var="images"
+                                       end="0">
+                              <img class="icon-shape icon-sm" src="${BASE_URL}${images}"/>
+                            </c:forEach>
+                          </c:forEach>
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        1
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <span class="badge bg-warning">Processing</span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        $15.00
-                      </td>
-                      <td class="text-muted align-middle border-top-0">
-                        <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle border-top-0 w-0">
-                        <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-2.jpg" alt="Ecommerce"
-                                          class="icon-shape icon-xl"></a>
+                        </td>
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="fw-semi-bold text-inherit">
-                          <h6 class="mb-0">Nutri Choise Biscuit</h6>
-                        </a>
-                        <span><small class="text-muted">2 Pkt</small></span>
+                        <td class="align-middle border-top-0">
+                          <c:choose>
+                            <c:when test="${order.orderStatus=='PENDING'}">
+                              <span class="badge bg-light-warning text-dark-warning ms-2">Pending</span> </c:when>
+                            <c:otherwise>
+                              <c:choose>
+                                <c:when test="${order.orderStatus=='VERIFIED'}">
+                                  <span class="badge bg-light-info text-dark-warning ms-2">Verified</span> </c:when>
+                                <c:otherwise>
+                                  <c:choose>
+                                    <c:when test="${order.orderStatus=='SHIPPED'}">
+                                      <span class="badge bg-light-subtle text-dark-warning ms-2">Shipped</span> </c:when>
+                                    <c:otherwise>
+                                      <c:choose>
+                                        <c:when test="${order.orderStatus=='DELIVERED'}">
+                                          <span class="badge bg-light-success text-dark-warning ms-2">Delivered</span> </c:when>
+                                        <c:otherwise>
+                                          <span class="badge bg-light-danger text-dark-warning ms-2">Cancelled</span> </c:otherwise>
+                                      </c:choose>
+                                    </c:otherwise>
+                                  </c:choose>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:otherwise>
+                          </c:choose>
+                        </td>
+                        <td class="align-middle border-top-0">
+                          $${order.total}0
+                        </td>
+                        <td class="text-muted align-middle border-top-0">
+                          <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
+                        </td>
+                      </tr>
+                    </c:forEach>
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">#14658
-                        </a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        July 9, 2023
-                      </td>
-                      <td class="align-middle border-top-0">
-                        2
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <span class="badge bg-success">Completed</span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        $45.00
-                      </td>
-                      <td class="text-muted align-middle border-top-0">
-                        <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle border-top-0 w-0">
-                        <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-3.jpg" alt="Ecommerce"
-                                          class="icon-shape icon-xl"></a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">
-                          <h6 class="mb-0">Cadbury Dairy Milk 5 Star Bites </h6>
-                          <span><small class="text-muted">202 g</small></span>
-                        </a>
 
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">#13778
-                        </a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        Oct 03, 2023
-                      </td>
-                      <td class="align-middle border-top-0">
-                        4
-
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <span class="badge bg-success">Completed</span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        $99.00
-                      </td>
-                      <td class="text-muted align-middle border-top-0">
-                        <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle border-top-0 w-0">
-                        <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-4.jpg" alt="Ecommerce"
-                                          class="icon-shape icon-xl"></a>
-
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="fw-semi-bold text-inherit">
-                          <h6 class="mb-0">Onion Flavour Potato </h6>
-                        </a>
-                        <span><small class="text-muted">100 g</small></span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">#13746
-                        </a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        March 5, 2023
-                      </td>
-                      <td class="align-middle border-top-0">
-                        1
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <span class="badge bg-success">Completed</span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        $12.00
-                      </td>
-                      <td class="text-muted align-middle border-top-0">
-                        <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle border-top-0 w-0">
-                        <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-5.jpg" alt="Ecommerce"
-                                          class="icon-shape icon-xl"></a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="fw-semi-bold text-inherit">
-                          <h6 class="mb-0">Salted Instant Popcorn </h6>
-                        </a>
-                        <span><small class="text-muted">500 g</small></span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">#13566
-                        </a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        July 9, 2023
-                      </td>
-                      <td class="align-middle border-top-0">
-                        2
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <span class="badge bg-danger">Cancel</span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        $6.00
-                      </td>
-                      <td class="text-muted align-middle border-top-0">
-                        <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle border-top-0 w-0">
-                        <a href="#"> <img src="${BASE_URL}assets/images/products/product-img-6.jpg" alt="Ecommerce"
-                                          class="icon-shape icon-xl"></a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="fw-semi-bold text-inherit">
-                          <h6 class="mb-0">Blueberry Greek Yogurt </h6>
-                        </a>
-                        <span><small class="text-muted">500 g</small></span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <a href="#" class="text-inherit">#12094
-                        </a>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        Oct 03, 2023
-                      </td>
-                      <td class="align-middle border-top-0">
-                        4
-                      </td>
-                      <td class="align-middle border-top-0">
-                        <span class="badge bg-success">Completed</span>
-                      </td>
-                      <td class="align-middle border-top-0">
-                        $18.00
-                      </td>
-                      <td class="text-muted align-middle border-top-0">
-                        <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
-                      </td>
-                    </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
+                <div class="border-top d-md-flex justify-content-between align-items-center p-6">
+                    <span>Showing 1 to 8 of 12 entries</span>
+                    <nav class="mt-2 mt-md-0">
+                        <ul class="pagination mb-0 ">
+                            <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
+                            <c:forEach var="i" begin="1" end="${pageCount}">
+                                <li class="page-item"><a class="page-link" href="${BASE_URL}account-orders?page=${i}">${i}</a></li>
+                            </c:forEach>
+
+                            <li class="page-item"><a class="page-link" href="#!">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
           </div>
         </div>
