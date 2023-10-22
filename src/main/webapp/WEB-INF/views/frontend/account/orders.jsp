@@ -56,8 +56,7 @@
                         <td class="align-middle border-top-0">
 
                           <c:forEach items="${order.orderItems}" var="items">
-                            <c:forEach items="${items.productId.images}" var="images"
-                                       end="0">
+                            <c:forEach items="${items.productId.images}" var="images" end="0">
                               <img class="icon-shape icon-sm" src="${BASE_URL}${images}"/>
                             </c:forEach>
                           </c:forEach>

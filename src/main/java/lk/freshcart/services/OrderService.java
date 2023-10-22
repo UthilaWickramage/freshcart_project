@@ -52,7 +52,7 @@ public class OrderService {
         return order;
     }
 
-    public void updateOrderStatus(Long id){
+    public Order updateOrderStatus(Long id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Order order = session.get(Order.class, id);
         Transaction transaction = session.beginTransaction();
@@ -66,6 +66,7 @@ public class OrderService {
         }
 
         transaction.commit();
+        return order;
     }
     public Order getOrder(Order order){
         Session session = HibernateUtil.getSessionFactory().openSession();

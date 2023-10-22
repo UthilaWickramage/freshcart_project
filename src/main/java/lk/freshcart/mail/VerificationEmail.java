@@ -27,7 +27,7 @@ public class VerificationEmail extends Mailable{
         // generate html/text content
         HtmlTextEmail htmlTextEmail = getEmailTemplateConfigBuilder()
                 .header()
-                .logo("https://fv5-2.failiem.lv/down.php?i=xvz2rweqfc&n=freshcart-white-logo.svg").logoHeight(41)
+                .logo("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgULGJQeoMXWufJbJHxXMdxAc5qJh5aJGPvclGnP22VIGb7kKdiocyblezvw5o5Q2qE_c2udqYjP9SDAN-WTJdG-spj03_VvtlIg0gh9xElqtsbRV1Og8YLwLO6gOyXChFzzOgFQgUfNzmaUGyZyvEezuXgNvLv9Q9SdiyaLjvG2NarnPpN5dfcuzNma5po/s1600/freshcart-white-logo.png").logoHeight(41)
                 .and()
                 .text("Welcome, "+name+"!").h1().center().and()
                 .text("To verify your email address click on the button below").center().and()
@@ -39,7 +39,7 @@ public class VerificationEmail extends Mailable{
                 .footerText("[Company Name, LLC]\n" +
                         "1234 Street Rd.\n" +
                         "Suite 1234").and()
-                .footerImage("https://fv5-2.failiem.lv/down.php?i=xvz2rweqfc&n=freshcart-white-logo.svg").width(100).linkUrl("https://www.rocketbase.io").and()
+                .footerImage("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgULGJQeoMXWufJbJHxXMdxAc5qJh5aJGPvclGnP22VIGb7kKdiocyblezvw5o5Q2qE_c2udqYjP9SDAN-WTJdG-spj03_VvtlIg0gh9xElqtsbRV1Og8YLwLO6gOyXChFzzOgFQgUfNzmaUGyZyvEezuXgNvLv9Q9SdiyaLjvG2NarnPpN5dfcuzNma5po/s1600/freshcart-white-logo.png").width(100).linkUrl("https://www.rocketbase.io").and()
                 .build();
         message.setContent(htmlTextEmail.getHtml(),"text/html");
 

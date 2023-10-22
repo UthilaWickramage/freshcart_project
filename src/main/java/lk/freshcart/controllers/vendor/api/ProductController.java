@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
@@ -14,6 +15,7 @@ import lk.freshcart.dto.CategoryDTO;
 import lk.freshcart.dto.ProductDTO;
 import lk.freshcart.entity.Category;
 import lk.freshcart.entity.Product;
+import lk.freshcart.entity.User;
 import lk.freshcart.services.CategoryService;
 import lk.freshcart.services.ProductService;
 import lk.freshcart.services.UploadService;
@@ -37,13 +39,17 @@ public class ProductController {
     CategoryService categoryService;
     @Context
     ServletContext context;
+    @Context
+    HttpServletRequest request;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(ProductDTO dto) {
+        User user= (User)request.getSession().getAttribute("vendor");
 
         Product product = new Product();
+        product.setUserId(user);
         product.setTitle(dto.getTitle());
         product.setDescription(dto.getDesc());
         product.setBrand(dto.getBrand());

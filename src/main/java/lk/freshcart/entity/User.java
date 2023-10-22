@@ -44,15 +44,15 @@ public class User extends BaseEntity{
         this.cards = cards;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Reviews> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Cards> cards = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<CartItem> cartItems = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Product> products = new HashSet<>();
 
     public Set<Product> getProducts() {

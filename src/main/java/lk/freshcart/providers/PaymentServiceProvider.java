@@ -39,7 +39,7 @@ public class PaymentServiceProvider {
         Stripe.apiKey = Env.get("app.secret_key");
         List<SessionCreateParams.LineItem> list = new ArrayList<>();
         cartItems.forEach(cartItem -> {
-            Customer customer = new Customer();
+
             SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
                     .setQuantity(Long.valueOf(cartItem.getQty()))
 

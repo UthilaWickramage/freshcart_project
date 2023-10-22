@@ -44,7 +44,7 @@
                 <a href="#" class="mx-md-8 ms-4 text-reset">Delivery</a>
                 <c:choose>
                     <c:when test="${user ne null}">
-                        <a href=""  class="text-reset d-none d-md-block">WishList</a>
+                        <a href="${BASE_URL}wishlist"  class="text-reset d-none d-md-block">WishList</a>
                     </c:when>
                     <c:otherwise>
                         <a href="#" class="text-reset d-none d-md-block">Warranty</a>
@@ -65,11 +65,11 @@
             </div>
 
             <div class="col-xxl-6 col-xl-5 col-lg-6 col-md-9">
-                <form action="#">
+                <form action="${BASE_URL}search" method="post">
                     <div class="input-group">
                         <input class="form-control" type="search" placeholder="Search for products"
-                               aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                               name="search">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
                     </div>
                 </form>
 

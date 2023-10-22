@@ -11,6 +11,8 @@ import lk.freshcart.entity.CartItem;
 import lk.freshcart.entity.Order;
 import lk.freshcart.entity.Product;
 import lk.freshcart.entity.User;
+import lk.freshcart.mail.InvoiceEmail;
+import lk.freshcart.providers.MailServiceProvider;
 import lk.freshcart.providers.PaymentServiceProvider;
 import lk.freshcart.services.CartService;
 import lk.freshcart.services.OrderService;
@@ -18,6 +20,7 @@ import lk.freshcart.util.HibernateUtil;
 import org.glassfish.jersey.server.mvc.Viewable;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -82,14 +85,6 @@ public class CheckoutController {
             e.printStackTrace();
             return Response.status(Response.Status.BAD_GATEWAY).build();
         }
-
-
-
     }
-@GET
-    public Viewable updateOrderStatus(@QueryParam("id") Long id){
-        OrderService orderService= new OrderService();
-        orderService.updateOrderStatus(id);
-        return new Viewable("/frontend/account/orders");
-    }
+
 }

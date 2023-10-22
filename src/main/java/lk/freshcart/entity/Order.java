@@ -15,7 +15,7 @@ public class Order extends BaseEntity{
     private Long id;
     private Double total;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User userId;
 
@@ -23,7 +23,7 @@ public class Order extends BaseEntity{
     @Column(name = "order_status")
     private OrderStatus orderStatus = OrderStatus.PENDING;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orderId")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "orderId")
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
